@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -6,563 +6,866 @@
 <title>🌺 夏威夷欧胡岛 · 六天五夜行程 | 8/7–8/12</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 40%, #48cae4 70%, #90e0ef 100%);
     min-height: 100vh;
-    padding: 30px 20px;
+    background: linear-gradient(to bottom,
+      #023e8a 0%,
+      #0077b6 22%,
+      #00b4d8 45%,
+      #90e0ef 63%,
+      #b8dfe8 70%,
+      #d4c59a 78%,
+      #e8d5a0 87%,
+      #f0e4be 100%
+    );
+    background-attachment: fixed;
+    padding: 36px 24px 190px;
+    position: relative;
+    overflow-x: hidden;
   }
+
+  /* ===== WAVE LAYERS (fixed, bottom of viewport) ===== */
+  .wave-bg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 260px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .wl {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    display: flex;
+    align-items: flex-end;
+  }
+  .wl svg { flex: 0 0 50%; height: 100%; display: block; }
+
+  .wl.w1 { height: 160px; animation: wm 9s linear infinite; opacity: 1; }
+  .wl.w2 { height: 130px; animation: wm 13s linear infinite reverse; opacity: 0.65; }
+  .wl.w3 { height: 100px; animation: wm 6s linear infinite; opacity: 0.42; }
+
+  @keyframes wm {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ===== SAND DECORATIONS ===== */
+  .sand-deco {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* ===== MAIN CONTENT ===== */
   .container {
-    max-width: 900px;
+    max-width: 1300px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
   }
+
+  /* ===== HEADER ===== */
   .header {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 36px 40px;
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 24px;
+    padding: 38px 44px;
     text-align: center;
     margin-bottom: 28px;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.35);
     color: white;
+    box-shadow: 0 8px 32px rgba(0,60,120,0.18);
   }
-  .header h1 { font-size: 2.4em; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-  .header .subtitle { font-size: 1.15em; margin-top: 8px; opacity: 0.92; }
-  .header .meta { margin-top: 16px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-  .meta-item { background: rgba(255,255,255,0.2); border-radius: 30px; padding: 6px 18px; font-size: 0.9em; }
+  .header h1 { font-size: 2.6em; font-weight: 800; text-shadow: 0 2px 10px rgba(0,0,0,0.25); letter-spacing: 2px; }
+  .header .subtitle { font-size: 1.1em; margin-top: 8px; opacity: 0.93; }
+  .header .meta { margin-top: 18px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .meta-item {
+    background: rgba(255,255,255,0.22);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: 0.88em;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
 
+  /* ===== ALERT BOX ===== */
   .alert-box {
-    background: #fff3cd;
+    background: rgba(255,243,200,0.96);
     border-left: 5px solid #ff9800;
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin-bottom: 24px;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
     color: #7d4a00;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   }
-  .alert-box h3 { margin-bottom: 8px; font-size: 1em; }
-  .alert-box ul { padding-left: 20px; line-height: 2; font-size: 0.92em; }
+  .alert-box h3 { margin-bottom: 14px; font-size: 1em; }
+  .alert-box a { color: #0077b6; }
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px dashed rgba(180,120,0,0.2);
+    font-size: 0.91em;
+    line-height: 1.6;
+    cursor: pointer;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li input[type=checkbox] {
+    margin-top: 3px;
+    width: 17px; height: 17px;
+    flex-shrink: 0;
+    accent-color: #e07b00;
+    cursor: pointer;
+  }
+  .checklist li.done { opacity: 0.45; }
+  .checklist li.done span { text-decoration: line-through; }
+  .flight-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    justify-content: center;
+  }
+  .flight-badge {
+    background: rgba(255,255,255,0.32);
+    border: 1px solid rgba(255,255,255,0.45);
+    border-radius: 10px;
+    padding: 7px 16px;
+    font-size: 0.86em;
+    color: white;
+    line-height: 1.55;
+  }
+  .flight-badge strong { display: block; font-size: 1.05em; letter-spacing: 0.3px; }
+  .flight-badge small { opacity: 0.85; font-size: 0.82em; }
 
+  /* ===== DAYS GRID — 2 columns x 3 rows ===== */
+  .days-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 820px) {
+    .days-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== DAY CARD ===== */
   .day-card {
-    background: white;
-    border-radius: 18px;
-    margin-bottom: 22px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0,0,50,0.12);
+    box-shadow: 0 10px 28px rgba(0,0,80,0.13);
+    display: flex;
+    flex-direction: column;
   }
   .day-header {
-    padding: 18px 28px;
+    padding: 16px 24px;
     color: white;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
   .day-num {
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.28);
     border-radius: 50%;
-    width: 48px; height: 48px;
+    width: 46px; height: 46px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.3em; font-weight: 700;
+    font-size: 1.25em; font-weight: 700;
     flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.4);
   }
-  .day-title { font-size: 1.25em; font-weight: 700; }
-  .day-theme { font-size: 0.88em; opacity: 0.9; margin-top: 2px; }
+  .day-title { font-size: 1.15em; font-weight: 700; line-height: 1.3; }
+  .day-theme { font-size: 0.82em; opacity: 0.9; margin-top: 2px; }
 
-  .d1 .day-header { background: linear-gradient(90deg, #f77f00, #f4a261); }
-  .d2 .day-header { background: linear-gradient(90deg, #2d6a4f, #40916c); }
-  .d3 .day-header { background: linear-gradient(90deg, #0077b6, #0096c7); }
-  .d4 .day-header { background: linear-gradient(90deg, #7b2d8b, #9d4edd); }
-  .d5 .day-header { background: linear-gradient(90deg, #c1121f, #e63946); }
-  .d6 .day-header { background: linear-gradient(90deg, #457b9d, #1d3557); }
+  .d1 .day-header { background: linear-gradient(105deg, #e85d04, #f4a261); }
+  .d2 .day-header { background: linear-gradient(105deg, #1b4332, #40916c); }
+  .d3 .day-header { background: linear-gradient(105deg, #0077b6, #0096c7); }
+  .d4 .day-header { background: linear-gradient(105deg, #6a0572, #9d4edd); }
+  .d5 .day-header { background: linear-gradient(105deg, #9d0208, #e63946); }
+  .d6 .day-header { background: linear-gradient(105deg, #1d3557, #457b9d); }
 
-  .day-body { padding: 20px 28px; }
+  .day-body { padding: 18px 22px; flex: 1; }
   .timeline { list-style: none; }
   .timeline li {
     display: flex;
-    gap: 16px;
-    margin-bottom: 14px;
+    gap: 12px;
+    margin-bottom: 12px;
     align-items: flex-start;
   }
   .time-badge {
-    background: #f0f4ff;
-    border-radius: 8px;
-    padding: 3px 10px;
-    font-size: 0.8em;
+    background: #eef2ff;
+    border-radius: 7px;
+    padding: 3px 9px;
+    font-size: 0.76em;
     color: #3d5a80;
-    font-weight: 600;
+    font-weight: 700;
     white-space: nowrap;
     flex-shrink: 0;
     margin-top: 2px;
-    min-width: 70px;
+    min-width: 66px;
     text-align: center;
+    letter-spacing: 0.3px;
   }
   .event-content { flex: 1; }
-  .event-name { font-weight: 600; color: #1a1a2e; font-size: 0.98em; }
-  .event-desc { color: #555; font-size: 0.87em; margin-top: 3px; line-height: 1.5; }
+  .event-name { font-weight: 600; color: #1a1a2e; font-size: 0.93em; }
+  .event-desc { color: #555; font-size: 0.83em; margin-top: 3px; line-height: 1.55; }
+
   .tag {
     display: inline-block;
     border-radius: 20px;
-    padding: 1px 9px;
-    font-size: 0.74em;
-    font-weight: 600;
-    margin-left: 6px;
+    padding: 1px 8px;
+    font-size: 0.71em;
+    font-weight: 700;
+    margin-left: 5px;
     vertical-align: middle;
   }
   .tag-must { background: #ffe0e0; color: #c0392b; }
-  .tag-food { background: #e0f5e9; color: #27ae60; }
-  .tag-tip { background: #e8f4ff; color: #1565c0; }
-  .tag-book { background: #fff0cc; color: #b8860b; }
+  .tag-food { background: #d8f5e4; color: #1e8449; }
+  .tag-tip  { background: #e8f4ff; color: #1565c0; }
+  .tag-book { background: #fff0cc; color: #996500; }
 
-  .divider { border: none; border-top: 1px dashed #e0e0e0; margin: 12px 0; }
-
+  /* ===== TIPS SECTIONS ===== */
   .tip-section {
-    background: white;
-    border-radius: 18px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 20px;
     padding: 24px 28px;
-    margin-bottom: 22px;
-    box-shadow: 0 8px 24px rgba(0,0,50,0.12);
+    margin-bottom: 24px;
+    box-shadow: 0 10px 28px rgba(0,0,80,0.13);
   }
-  .tip-section h2 { color: #1a1a2e; margin-bottom: 16px; font-size: 1.15em; border-bottom: 2px solid #e0e8ff; padding-bottom: 8px; }
+  .tip-section h2 {
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    font-size: 1.1em;
+    border-bottom: 2px solid #d0e8ff;
+    padding-bottom: 8px;
+  }
   .tip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media (max-width: 600px) { .tip-grid { grid-template-columns: 1fr; } }
   .tip-card {
-    background: #f8faff;
+    background: #f4f8ff;
     border-radius: 12px;
     padding: 14px 16px;
     border-left: 4px solid #0096c7;
   }
-  .tip-card h4 { color: #0077b6; font-size: 0.9em; margin-bottom: 6px; }
-  .tip-card p, .tip-card li { color: #444; font-size: 0.85em; line-height: 1.7; }
+  .tip-card h4 { color: #0077b6; font-size: 0.88em; margin-bottom: 6px; }
+  .tip-card p, .tip-card li { color: #444; font-size: 0.83em; line-height: 1.75; }
   .tip-card ul { padding-left: 16px; }
 
   .restaurant-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  .restaurant-table th { background: #f0f4ff; color: #3d5a80; padding: 8px 12px; text-align: left; font-size: 0.85em; }
-  .restaurant-table td { padding: 8px 12px; font-size: 0.85em; color: #333; border-bottom: 1px solid #f0f0f0; }
+  .restaurant-table th { background: #eef4ff; color: #3d5a80; padding: 8px 12px; text-align: left; font-size: 0.83em; }
+  .restaurant-table td { padding: 8px 12px; font-size: 0.83em; color: #333; border-bottom: 1px solid #f0f0f0; }
   .restaurant-table tr:last-child td { border-bottom: none; }
-  .price { color: #27ae60; font-weight: 600; }
+  .price { color: #1e8449; font-weight: 700; }
 
-  .footer { text-align: center; color: rgba(255,255,255,0.8); font-size: 0.85em; margin-top: 10px; padding-bottom: 10px; }
+  /* ===== RESTAURANT HIGHLIGHT IN TIMELINE ===== */
+  .timeline li.rest-item {
+    background: linear-gradient(135deg, #fffaf0, #fff3e0);
+    border-radius: 10px;
+    border-left: 3px solid #f4a261;
+    padding: 8px 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .cuisine-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #fff0e0, #ffe0c0);
+    border: 1.5px solid #f4a261;
+    border-radius: 20px;
+    padding: 1px 9px;
+    font-size: 0.71em;
+    font-weight: 700;
+    color: #c85a00;
+    margin-left: 7px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  /* ===== RESTAURANT DROPDOWN ===== */
+  .rest-select-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .rest-select-row label { font-weight: 600; color: #1a1a2e; font-size: 0.95em; }
+  .rest-select-row select {
+    padding: 9px 20px 9px 16px;
+    border-radius: 10px;
+    border: 2px solid #0096c7;
+    font-size: 0.93em;
+    color: #1a1a2e;
+    background: #f0f8ff;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+  }
+  .rest-list { display: flex; flex-wrap: wrap; gap: 10px; }
+  .rest-card {
+    flex: 1 1 195px;
+    min-width: 175px;
+    border-radius: 11px;
+    padding: 11px 13px;
+    border-left: 4px solid #ccc;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .rest-card:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(0,0,0,0.1); }
+  .rc-name { font-weight: 700; font-size: 0.9em; color: #1a1a2e; margin-bottom: 3px; }
+  .rc-cat { font-size: 0.73em; color: #666; margin-bottom: 3px; }
+  .rc-stars { font-size: 0.9em; margin-bottom: 3px; }
+  .rc-price { display: inline-block; background: #d8f5e4; color: #1e8449; font-weight: 700; font-size: 0.73em; padding: 1px 8px; border-radius: 20px; margin-bottom: 3px; }
+  .rc-dish { color: #444; font-size: 0.78em; margin-top: 3px; }
+  .rc-note { color: #888; font-size: 0.74em; margin-top: 3px; }
+  .rc-reserve { display: inline-block; background: #fff0cc; border: 1px solid #f4b400; color: #996500; font-weight: 700; font-size: 0.68em; padding: 1px 7px; border-radius: 20px; margin-left: 5px; vertical-align: middle; }
+  .rc-must    { display: inline-block; background: linear-gradient(90deg,#ff6b35,#f7c59f); color: #fff; font-weight: 700; font-size: 0.68em; padding: 1px 8px; border-radius: 20px; margin-left: 5px; vertical-align: middle; }
+  .rest-card-featured { padding: 15px 16px; font-size: 1.04em; border-left-width: 5px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
+  .rest-card-featured .rc-name { font-size: 1.02em; }
+  .rest-card-featured .rc-stars { font-size: 1.05em; }
+
+  .footer {
+    text-align: center;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.85em;
+    margin-top: 8px;
+    padding-bottom: 8px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
 </style>
 </head>
 <body>
+
+<!-- ===== ANIMATED OCEAN WAVES ===== -->
+<div class="wave-bg">
+
+  <!-- Wave 1: main white foam, fastest -->
+  <div class="wl w1">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,70 C60,110 120,30 180,70 C240,110 300,30 360,70 C420,110 480,30 540,70 C600,110 660,30 720,70 C780,110 840,30 900,70 C960,110 1020,30 1080,70 C1140,110 1200,30 1260,70 C1320,110 1380,30 1440,70 L1440,160 L0,160 Z" fill="rgba(255,255,255,0.85)"/>
+    </svg>
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,70 C60,110 120,30 180,70 C240,110 300,30 360,70 C420,110 480,30 540,70 C600,110 660,30 720,70 C780,110 840,30 900,70 C960,110 1020,30 1080,70 C1140,110 1200,30 1260,70 C1320,110 1380,30 1440,70 L1440,160 L0,160 Z" fill="rgba(255,255,255,0.85)"/>
+    </svg>
+  </div>
+
+  <!-- Wave 2: mid cyan, slower + reversed -->
+  <div class="wl w2">
+    <svg viewBox="0 0 1440 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,55 C90,100 180,10 270,55 C360,100 450,10 540,55 C630,100 720,10 810,55 C900,100 990,10 1080,55 C1170,100 1260,10 1350,55 C1395,77 1430,40 1440,55 L1440,130 L0,130 Z" fill="rgba(144,224,239,0.72)"/>
+    </svg>
+    <svg viewBox="0 0 1440 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,55 C90,100 180,10 270,55 C360,100 450,10 540,55 C630,100 720,10 810,55 C900,100 990,10 1080,55 C1170,100 1260,10 1350,55 C1395,77 1430,40 1440,55 L1440,130 L0,130 Z" fill="rgba(144,224,239,0.72)"/>
+    </svg>
+  </div>
+
+  <!-- Wave 3: deep blue undertow, fastest -->
+  <div class="wl w3">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C120,80 240,5 360,40 C480,75 600,5 720,40 C840,75 960,5 1080,40 C1200,75 1320,5 1440,40 L1440,100 L0,100 Z" fill="rgba(0,119,182,0.48)"/>
+    </svg>
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C120,80 240,5 360,40 C480,75 600,5 720,40 C840,75 960,5 1080,40 C1200,75 1320,5 1440,40 L1440,100 L0,100 Z" fill="rgba(0,119,182,0.48)"/>
+    </svg>
+  </div>
+
+</div>
+
+<!-- ===== SAND DECORATIONS: starfish & seashells ===== -->
+<div class="sand-deco">
+
+  <!-- Starfish 1: orange, far left -->
+  <svg style="position:absolute;left:3%;bottom:8px;" width="54" height="54" viewBox="0 0 100 100">
+    <polygon points="50,5 38.2,33.8 7.2,36.1 31,56.2 23.5,86.4 50,70 76.5,86.4 69,56.2 92.8,36.1 61.8,33.8" fill="#e07b39" opacity="0.9"/>
+    <polygon points="50,19 41.7,37 21.4,38.5 36.9,52 32.3,71.8 50,62 67.7,71.8 63.1,52 78.6,38.5 58.3,37" fill="#f4a261" opacity="0.55"/>
+  </svg>
+
+  <!-- Seashell 1: left -->
+  <svg style="position:absolute;left:12%;bottom:5px;" width="48" height="48" viewBox="0 0 100 100">
+    <path d="M50,88 C28,78 12,56 18,34 C24,12 48,8 62,22 C78,38 76,62 62,72 C50,80 36,72 32,60 C28,48 36,36 46,40 C56,44 58,56 50,60 C44,62 40,56 43,52" stroke="#c8956a" stroke-width="4.5" fill="rgba(232,200,160,0.7)" stroke-linecap="round"/>
+    <circle cx="50" cy="88" r="5" fill="#c8956a" opacity="0.8"/>
+  </svg>
+
+  <!-- Pebble cluster left-center -->
+  <svg style="position:absolute;left:21%;bottom:3px;" width="80" height="30" viewBox="0 0 80 30">
+    <ellipse cx="10" cy="20" rx="9" ry="6" fill="#c8b99a" opacity="0.8"/>
+    <ellipse cx="28" cy="22" rx="8" ry="5" fill="#d4c4a2" opacity="0.75"/>
+    <ellipse cx="46" cy="18" rx="12" ry="8" fill="#bfaf92" opacity="0.8"/>
+    <ellipse cx="65" cy="21" rx="8" ry="5.5" fill="#cfc09a" opacity="0.75"/>
+  </svg>
+
+  <!-- Starfish 2: deep red, center-left, tilted -->
+  <svg style="position:absolute;left:32%;bottom:10px;transform:rotate(28deg)" width="46" height="46" viewBox="0 0 100 100">
+    <polygon points="50,5 38.2,33.8 7.2,36.1 31,56.2 23.5,86.4 50,70 76.5,86.4 69,56.2 92.8,36.1 61.8,33.8" fill="#c0392b" opacity="0.87"/>
+    <polygon points="50,19 41.7,37 21.4,38.5 36.9,52 32.3,71.8 50,62 67.7,71.8 63.1,52 78.6,38.5 58.3,37" fill="#e74c3c" opacity="0.5"/>
+  </svg>
+
+  <!-- Seashell 2: center -->
+  <svg style="position:absolute;left:47%;bottom:6px;" width="52" height="52" viewBox="0 0 100 100">
+    <path d="M50,80 C32,70 22,52 28,36 C34,20 52,16 64,28 C76,40 74,60 62,68 C52,74 40,66 38,56 C36,46 44,38 52,42 C60,46 60,56 54,58" stroke="#b87542" stroke-width="5" fill="rgba(220,185,140,0.65)" stroke-linecap="round"/>
+    <circle cx="50" cy="80" r="6" fill="#b87542" opacity="0.85"/>
+  </svg>
+
+  <!-- Small conch, center-right -->
+  <svg style="position:absolute;left:57%;bottom:4px;" width="44" height="38" viewBox="0 0 90 75">
+    <path d="M45,62 C25,52 14,36 20,20 C26,4 48,2 60,16 C70,27 68,48 56,56 C46,63 34,55 32,44 C30,33 40,27 48,31 C56,35 54,45 46,46" stroke="#9a6e35" stroke-width="4" fill="rgba(210,175,130,0.62)" stroke-linecap="round"/>
+    <path d="M45,62 L20,72" stroke="#9a6e35" stroke-width="3.5" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Starfish 3: purple, right-center, tilted -->
+  <svg style="position:absolute;left:67%;bottom:9px;transform:rotate(-18deg)" width="50" height="50" viewBox="0 0 100 100">
+    <polygon points="50,5 38.2,33.8 7.2,36.1 31,56.2 23.5,86.4 50,70 76.5,86.4 69,56.2 92.8,36.1 61.8,33.8" fill="#7b2d8b" opacity="0.85"/>
+    <polygon points="50,19 41.7,37 21.4,38.5 36.9,52 32.3,71.8 50,62 67.7,71.8 63.1,52 78.6,38.5 58.3,37" fill="#c77dff" opacity="0.5"/>
+  </svg>
+
+  <!-- Pebble cluster right -->
+  <svg style="position:absolute;left:75%;bottom:3px;" width="90" height="32" viewBox="0 0 90 32">
+    <ellipse cx="10" cy="22" rx="8" ry="6" fill="#c4b490" opacity="0.8"/>
+    <ellipse cx="28" cy="24" rx="11" ry="7" fill="#d0c09a" opacity="0.75"/>
+    <ellipse cx="52" cy="20" rx="13" ry="8" fill="#bfaf8a" opacity="0.8"/>
+    <ellipse cx="75" cy="24" rx="10" ry="6" fill="#c8b898" opacity="0.75"/>
+  </svg>
+
+  <!-- Seashell 3: right -->
+  <svg style="position:absolute;left:85%;bottom:7px;" width="48" height="48" viewBox="0 0 100 100">
+    <path d="M50,85 C30,75 18,55 24,36 C30,17 52,12 65,26 C78,40 76,62 63,72 C52,80 38,72 36,60 C34,48 44,40 52,44 C60,48 60,60 52,62 C46,64 42,58 45,54" stroke="#a07845" stroke-width="4.5" fill="rgba(228,195,148,0.65)" stroke-linecap="round"/>
+    <circle cx="50" cy="85" r="5.5" fill="#a07845" opacity="0.85"/>
+  </svg>
+
+  <!-- Starfish 4: golden, far right -->
+  <svg style="position:absolute;right:2%;bottom:7px;transform:rotate(42deg)" width="40" height="40" viewBox="0 0 100 100">
+    <polygon points="50,5 38.2,33.8 7.2,36.1 31,56.2 23.5,86.4 50,70 76.5,86.4 69,56.2 92.8,36.1 61.8,33.8" fill="#d4a017" opacity="0.88"/>
+    <polygon points="50,19 41.7,37 21.4,38.5 36.9,52 32.3,71.8 50,62 67.7,71.8 63.1,52 78.6,38.5 58.3,37" fill="#f4d03f" opacity="0.5"/>
+  </svg>
+
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
 <div class="container">
 
   <!-- 头部 -->
   <div class="header">
-    <h1>🌺 夏威夷欧胡岛</h1>
+    <h1>🌺 夏威夷欧胡岛 🌺</h1>
     <div class="subtitle">六天五夜家庭旅行 · The Laylow Autograph Collection</div>
     <div class="meta">
-      <span class="meta-item">📅 2025年 8月7日 — 8月12日</span>
+      <span class="meta-item">📅 2026年 8月7日 — 8月12日</span>
       <span class="meta-item">👨‍👩‍👦 3人家庭出行</span>
-      <span class="meta-item">✈️ 去程 6:15AM → 1:20PM</span>
       <span class="meta-item">🏨 威基基 Waikiki</span>
+    </div>
+    <div class="flight-row">
+      <div class="flight-badge">
+        <strong>✈️ 去程 &nbsp; 8/7 6:15 AM → 1:20 PM</strong>
+        <small>Albany (ALB) 出发 6:15 AM · 飞行约 5.5 小时 · 抵达 Honolulu (HNL)</small>
+      </div>
+      <div class="flight-badge">
+        <strong>✈️ 回程 &nbsp; 8/12 2:50 PM → 8/13 9:00 AM</strong>
+        <small>Honolulu (HNL) 2:50 PM 起飞 · 次日上午抵达 Albany (ALB)</small>
+      </div>
     </div>
   </div>
 
   <!-- 重要提醒 -->
   <div class="alert-box">
-    <h3>⚠️ 出发前必须提前预订（否则去不了！）</h3>
-    <ul>
-      <li>🐠 <strong>Hanauma Bay 浮潜</strong>：需提前 <strong>2天</strong> 上官网预约，旺季极易售罄（每人 $25）→ <a href="https://hanauma.honolulu.gov" target="_blank">hanauma.honolulu.gov</a></li>
-      <li>🌋 <strong>Diamond Head 钻石头山</strong>：需网上预约入场券 → <a href="https://gostateparks.hawaii.gov" target="_blank">gostateparks.hawaii.gov</a></li>
-      <li>⚓ <strong>珍珠港 USS Arizona Memorial</strong>：免费但需提前预约 → <a href="https://www.recreation.gov" target="_blank">recreation.gov</a>（或购买 $7 的优先通道套票）</li>
-      <li>🌺 <strong>Luau 夏威夷晚宴</strong>：建议提前 1–2 周网上订座</li>
-      <li>🚗 <strong>租车建议</strong>：北岸（Day 4）那天租一天车最方便，约 $60–$80/天</li>
+    <h3>✅ 出发前必须提前预订清单（勾选已完成项）</h3>
+    <ul class="checklist" id="bookingList">
+      <li><input type="checkbox" onchange="handleCheck(this)">
+        <span>🐠 <strong>Hanauma Bay 浮潜</strong>：需提前 <strong>2天</strong> 上官网预约，旺季极易售罄（每人 $25） → <a href="https://hanauma.honolulu.gov" target="_blank">hanauma.honolulu.gov</a></span>
+      </li>
+      <li><input type="checkbox" onchange="handleCheck(this)">
+        <span>🌋 <strong>Diamond Head 钒石头山</strong>：需网上预约入场券 → <a href="https://gostateparks.hawaii.gov" target="_blank">gostateparks.hawaii.gov</a></span>
+      </li>
+      <li><input type="checkbox" onchange="handleCheck(this)">
+        <span>⚓ <strong>珍珠港 USS Arizona Memorial</strong>：免费但需提前预约 → <a href="https://www.recreation.gov" target="_blank">recreation.gov</a>（或购 $7 优先通道套票）</span>
+      </li>
+      <li><input type="checkbox" onchange="handleCheck(this)">
+        <span>🌺 <strong>Luau 夏威夷晚宴</strong>：建议提前 1–2 周网上订座 → <a href="https://www.paradisecovehawaii.com" target="_blank">paradisecovehawaii.com</a></span>
+      </li>
+      <li><input type="checkbox" onchange="handleCheck(this)">
+        <span>🍽️ <strong>Roy's Waikiki 晚餐</strong>：建议提前预约 → <a href="https://www.opentable.com" target="_blank">OpenTable</a> 或直接打电话订位</span>
+      </li>
+      <li><input type="checkbox" onchange="handleCheck(this)">
+        <span>🚗 <strong>租车（Day 4 北岸）</strong>：建议提前几天在网上预订，旺季车辆不够用，约 $60–$80/天</span>
+      </li>
     </ul>
   </div>
 
-  <!-- DAY 1 -->
-  <div class="day-card d1">
-    <div class="day-header">
-      <div class="day-num">D1</div>
-      <div>
-        <div class="day-title">抵达夏威夷 · 初见威基基</div>
-        <div class="day-theme">📅 8月7日（周四）</div>
+  <!-- 六天行程：2列 × 3行 -->
+  <div class="days-grid">
+
+    <!-- DAY 1 -->
+    <div class="day-card d1">
+      <div class="day-header">
+        <div class="day-num">D1</div>
+        <div>
+          <div class="day-title">抵达夏威夷 · 初见威基基</div>
+          <div class="day-theme">📅 8月7日（周四）</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="timeline">
+          <li>
+            <span class="time-badge">6:15 AM</span>
+            <div class="event-content">
+              <div class="event-name">✈️ 出发登机</div>
+              <div class="event-desc">出发机场起飞，飞行约 5.5 小时（夏威夷比大陆时间慢 5–6 小时）</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">1:20 PM</span>
+            <div class="event-content">
+              <div class="event-name">🛬 抵达 HNL 国际机场</div>
+              <div class="event-desc">取行李后叫 Uber/Lyft 前往酒店，约 20–30 分钟，费用约 $30–$40</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">2:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🏨 入住 The Laylow, Autograph Collection</div>
+              <div class="event-desc">2299 Kuhio Ave，步行至威基基海滩仅 5 分钟。整理行李，换上泳装</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">4:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🏖️ 威基基海滩初体验 <span class="tag tag-must">必做</span></div>
+              <div class="event-desc">感受夏威夷海水，沿海滩散步，欣赏钻石头山轮廓。海水约 27°C</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">6:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🌅 Kuhio Beach 看日落</div>
+              <div class="event-desc">8月日落约 7:15 PM，海边有免费 hula 舞表演</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">7:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🍽️ 晚餐：Duke's Waikiki <span class="tag tag-food">推荐</span></div>
+              <div class="event-desc">人均 $30–$50，正宗夏威夷海鲜，海滩边绝佳位置。建议 OpenTable 提前订位</div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="day-body">
-      <ul class="timeline">
-        <li>
-          <span class="time-badge">6:15 AM</span>
-          <div class="event-content">
-            <div class="event-name">✈️ 出发登机</div>
-            <div class="event-desc">出发机场起飞，飞行约 5.5 小时（注意：夏威夷比大陆时间慢 5–6 小时，抵达时当地才是下午）</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">1:20 PM</span>
-          <div class="event-content">
-            <div class="event-name">🛬 抵达 Daniel K. Inouye 国际机场（HNL）</div>
-            <div class="event-desc">取行李后叫 Uber/Lyft 前往酒店，约 20–30 分钟，费用约 $30–$40</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">2:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🏨 入住 The Laylow, Autograph Collection</div>
-            <div class="event-desc">地址：2299 Kuhio Ave, Honolulu。中世纪现代风格精品酒店，步行至威基基海滩仅 5 分钟<br>整理行李，换上泳装</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">4:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🏖️ 威基基海滩初体验 <span class="tag tag-must">必做</span></div>
-            <div class="event-desc">感受夏威夷海水，沿海滩边散步，欣赏钻石头山轮廓。海水清澈温暖（约 27°C），非常适合游泳</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">6:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🌅 Kuhio Beach 看日落</div>
-            <div class="event-desc">夏威夷8月日落约 7:15 PM，海边有免费 hula 舞表演</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">7:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🍽️ 晚餐：Duke's Waikiki <span class="tag tag-food">推荐</span></div>
-            <div class="event-desc">人均 $30–$50，正宗夏威夷海鲜，海滩边绝佳位置，以冲浪传奇 Duke Kahanamoku 命名。建议提前 OpenTable 订位</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- DAY 2 -->
-  <div class="day-card d2">
-    <div class="day-header">
-      <div class="day-num">D2</div>
-      <div>
-        <div class="day-title">珍珠港 · 历史与城市</div>
-        <div class="day-theme">📅 8月8日（周五）</div>
+    <!-- DAY 2 -->
+    <div class="day-card d2">
+      <div class="day-header">
+        <div class="day-num">D2</div>
+        <div>
+          <div class="day-title">珍珠港 · 历史与城市</div>
+          <div class="day-theme">📅 8月8日（周五）</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="timeline">
+          <li>
+            <span class="time-badge">9:00 AM</span>
+            <div class="event-content">
+              <div class="event-name">☕ 酒店早餐</div>
+              <div class="event-desc">Hideout 餐厅或附近 Egg 'n Things（夏威夷本地早餐名店）</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">9:30 AM</span>
+            <div class="event-content">
+              <div class="event-name">⚓ 珍珠港 Pearl Harbor <span class="tag tag-must">必去</span> <span class="tag tag-book">需预约</span></div>
+              <div class="event-desc">
+                <strong>USS Arizona Memorial</strong>（免费）：乘船游览，沉船遗址令人动容<br>
+                <strong>密苏里号战列舰</strong>：$35/人，二战结束签字现场<br>
+                💡 全程约 4–5 小时，建议早到避免人多
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">2:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🍜 午餐：Plate Lunch</div>
+              <div class="event-desc">L&L Hawaiian BBQ 或 Zippy's，体验本地 Plate Lunch，人均约 $12</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">3:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🏛️ 伊奥拉尼宫 Iolani Palace</div>
+              <div class="event-desc">美国唯一真正皇家宫殿，末代女王 Liliuokalani 曾被囚于此。门票 $25/人</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">5:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🛍️ Ala Moana Center 逛街</div>
+              <div class="event-desc">全美最大露天购物中心，LV/Gucci/Coach 俱全，顺便逛 Ala Moana Beach Park</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">7:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🍽️ 晚餐：Roy's Waikiki <span class="tag tag-food">高档推荐</span></div>
+              <div class="event-desc">人均 $60–$80，名厨 Roy Yamaguchi 创办。代表菜：黑糖酥皮鱼、熔岩巧克力蛋糕</div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="day-body">
-      <ul class="timeline">
-        <li>
-          <span class="time-badge">7:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">☕ 酒店早餐</div>
-            <div class="event-desc">The Laylow 内的 Hideout 餐厅，或附近 Egg 'n Things（夏威夷本地早餐名店）</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">8:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">⚓ 珍珠港 Pearl Harbor <span class="tag tag-must">必去</span> <span class="tag tag-book">需预约</span></div>
-            <div class="event-desc">
-              <strong>USS Arizona Memorial</strong>（免费，需预约）：乘船游览珍珠港湾，沉船遗址令人动容<br>
-              <strong>Battleship Missouri（密苏里号战列舰）</strong>：$35/人，二战结束签字现场<br>
-              <strong>Pacific Aviation Museum</strong>（可选）：$30/人，珍珠港事变珍贵文物<br>
-              💡 全程游览约 4–5 小时，建议早到避免人多
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">1:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🍜 午餐：Hawaii's Best Plate Lunch</div>
-            <div class="event-desc">附近找 L&L Hawaiian BBQ 或 Zippy's，体验本地人的 Plate Lunch（白饭+主菜+沙拉），人均约 $12</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">3:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🏛️ 伊奥拉尼宫 Iolani Palace</div>
-            <div class="event-desc">美国唯一一座真正皇家宫殿，末代夏威夷女王 Liliuokalani 曾在此被囚禁，历史与故事感极强。门票 $25/人</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">5:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🛍️ Ala Moana Center 逛街</div>
-            <div class="event-desc">全美最大露天购物中心，LV/Gucci/Coach 等品牌俱全，也有 Macy's 和本地特色店。顺便走到 Ala Moana Beach Park 吹吹海风</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">7:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🍽️ 晚餐：Roy's Waikiki <span class="tag tag-food">高档推荐</span></div>
-            <div class="event-desc">人均 $60–$80，夏威夷传奇名厨 Roy Yamaguchi 创办，夏威夷融合料理代表。代表菜：黑糖酥皮鱼、熔岩巧克力蛋糕</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- DAY 3 -->
-  <div class="day-card d3">
-    <div class="day-header">
-      <div class="day-num">D3</div>
-      <div>
-        <div class="day-title">钻石头山 · 东海岸海湾</div>
-        <div class="day-theme">📅 8月9日（周六）</div>
+    <!-- DAY 3 -->
+    <div class="day-card d3">
+      <div class="day-header">
+        <div class="day-num">D3</div>
+        <div>
+          <div class="day-title">钻石头山 · 东海岸海湾</div>
+          <div class="day-theme">📅 8月9日（周六）</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="timeline">
+          <li>
+            <span class="time-badge">7:30 AM</span>
+            <div class="event-content">
+              <div class="event-name">🌋 Diamond Head 钻石头山 <span class="tag tag-must">必做</span> <span class="tag tag-book">需预约</span></div>
+              <div class="event-desc">往返 3.2 km，约 1.5–2 小时，务必早出发避开正午烈日。门票 $5/人<br>山顶俯瞰整个威基基和太平洋</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">9:30 AM</span>
+            <div class="event-content">
+              <div class="event-name">🧇 早午餐 &amp; Waiola Shave Ice</div>
+              <div class="event-desc">Kaimuki 区用餐后，来一份夏威夷经典刨冰甜品</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">10:30 AM</span>
+            <div class="event-content">
+              <div class="event-name">🐠 Hanauma Bay 浮潜 <span class="tag tag-must">强烈推荐</span> <span class="tag tag-book">提前2天预约！</span></div>
+              <div class="event-desc">天然火山口海湾，珊瑚礁完好，热带鱼超多。$25/人，<strong>11:30 后停止入场</strong>，务必早去</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">2:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🏔️ Makapu'u Lookout 观景台</div>
+              <div class="event-desc">欧胡岛东端最壮观悬崖观景点，约 30 分钟轻松步道，偶有海豚出没</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">3:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🏖️ Kailua Beach <span class="tag tag-must">必体验</span></div>
+              <div class="event-desc">多次评为全美最美海滩，白沙细腻，浪小，非常适合父母放松游泳</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">6:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🍽️ 晚餐：Buzz's Lanikai <span class="tag tag-food">推荐</span></div>
+              <div class="event-desc">凯卢瓦附近本地经典牛排/海鲜馆，人均 $40–$60</div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="day-body">
-      <ul class="timeline">
-        <li>
-          <span class="time-badge">6:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">🌋 Diamond Head 钻石头山徒步 <span class="tag tag-must">必做</span> <span class="tag tag-book">需预约</span></div>
-            <div class="event-desc">
-              往返 3.2 公里，爬升 200 米，约 1.5–2 小时。<strong>务必早出发</strong>，8月正午烈日炎炎非常难受<br>
-              门票 $5/人（需网上预约）<br>
-              山顶可俯瞰整个威基基和太平洋，是欧胡岛最经典的风景之一
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">9:00 AM</span>
-          <div class="event-content">
-            <div class="event-name">🥞 早午餐：Kaimuki / Kapahulu 区</div>
-            <div class="event-desc">Goma Tei（日式拉面）或 Waiola Shave Ice（刨冰甜品，夏威夷经典），约步行 15 分钟</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">10:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">🐠 Hanauma Bay 浮潜 <span class="tag tag-must">强烈推荐</span> <span class="tag tag-book">必须提前2天预约！</span></div>
-            <div class="event-desc">
-              夏威夷最知名的浮潜地点，古老火山口形成的天然海湾，珊瑚礁保护完好，热带鱼超多<br>
-              门票 $25/人，8:00 AM 开放，<strong>当天 11:30 后停止入场</strong>，务必早去<br>
-              可在入口处租浮潜套装 ~$12。注意：禁止踩踏珊瑚礁
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">2:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🏔️ Makapu'u Lookout 观景台</div>
-            <div class="event-desc">欧胡岛东端最壮观的悬崖观景点，天气好时可见邻近岛屿，冬季可观鲸（8月偶有海豚）。约 30 分钟轻松步道</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">3:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🏖️ Kailua Beach 海滩 <span class="tag tag-must">必体验</span></div>
-            <div class="event-desc">多次被评为全美最美海滩，白沙粉细，海水碧蓝，风平浪静。比威基基更安静清幽，非常适合家人放松</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">6:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🍽️ 晚餐：Buzz's Lanikai（凯卢瓦附近）<span class="tag tag-food">推荐</span></div>
-            <div class="event-desc">本地经典牛排/海鲜餐厅，当地人喜爱，人均 $40–$60。或 Cinnamon's Restaurant（早午餐风格，份量大）</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- DAY 4 -->
-  <div class="day-card d4">
-    <div class="day-header">
-      <div class="day-num">D4</div>
-      <div>
-        <div class="day-title">北岸 · 菠萝园 · 大蒜虾</div>
-        <div class="day-theme">📅 8月10日（周日）</div>
+    <!-- DAY 4 -->
+    <div class="day-card d4">
+      <div class="day-header">
+        <div class="day-num">D4</div>
+        <div>
+          <div class="day-title">北岸 · 菠萝园 · 大蒜虾</div>
+          <div class="day-theme">📅 8月10日（周日）</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="timeline">
+          <li>
+            <span class="time-badge">9:00 AM</span>
+            <div class="event-content">
+              <div class="event-name">🚗 租车出发（今天必须租车）</div>
+              <div class="event-desc">Hertz/Avis/Enterprise 在 Waikiki 附近，$65–$90/天。H1/H2 高速约 50 分钟到北岸</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">10:30 AM</span>
+            <div class="event-content">
+              <div class="event-name">🍍 Dole Pineapple Plantation <span class="tag tag-must">必体验</span></div>
+              <div class="event-desc"><strong>必买 Dole Whip 菠萝冰淇淋</strong>！可参加菠萝 Express 小火车游览 $12/人</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">12:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🦐 午餐：Giovanni's Shrimp Truck <span class="tag tag-must">必吃！</span></div>
+              <div class="event-desc">北岸传奇虾车，营业 30+ 年。<strong>经典蒜香奶油虾</strong>配白饭，$15/份</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">2:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🌊 Haleiwa 冲浪小镇漫步</div>
+              <div class="event-desc">彩色小屋、冲浪店、艺术画廊。去 <strong>Matsumoto's Shave Ice</strong> 吃经典刨冰！</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">3:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🏄 Waimea Bay 韦麦阿湾</div>
+              <div class="event-desc">夏季浪小可安全游泳，左边巨石可跳水（胆大者挑战）</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">5:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🌺 Sunset Beach + 返程</div>
+              <div class="event-desc">沿海岸欣赏北岸日落，返回威基基后在 Marukame Udon 吃平价乌冬面（$8）</div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="day-body">
-      <ul class="timeline">
-        <li>
-          <span class="time-badge">8:00 AM</span>
-          <div class="event-content">
-            <div class="event-name">🚗 租车出发（建议今天租车）</div>
-            <div class="event-desc">北岸交通不便，强烈建议今天租车。Hertz/Avis/Enterprise 都在 Waikiki 附近，约 $65–$90/天。全程开 H1/H2 高速约 50 分钟</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">9:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">🍍 Dole Pineapple Plantation 菠萝园 <span class="tag tag-must">必体验</span></div>
-            <div class="event-desc">
-              地址：64-1550 Kamehameha Hwy, Wahiawa<br>
-              <strong>必买 Dole Whip 菠萝冰淇淋</strong>！香甜清凉，排队也值得<br>
-              可参加菠萝 Express 小火车游览（$12/人），穿越菠萝田
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">11:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">🦐 午餐：Giovanni's Shrimp Truck <span class="tag tag-must">必吃！</span></div>
-            <div class="event-desc">
-              北岸 Haleiwa 小镇旁最传奇的虾车，已营业 30+ 年<br>
-              <strong>经典蒜香奶油虾</strong>（Scampi Style）配白饭，$15/份<br>
-              💡 注意：是路边卡车，没有室内座位，有户外桌子
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">1:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🌊 Haleiwa 小镇漫步</div>
-            <div class="event-desc">北岸最有特色的冲浪小镇，彩色小屋、冲浪店、艺术画廊。去 <strong>Matsumoto's Shave Ice</strong> 吃夏威夷刨冰（超级经典！）</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">2:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🏄 Waimea Bay 韦麦阿湾</div>
-            <div class="event-desc">夏威夷最著名的冲浪海滩（冬季有 10 米大浪），夏天浪小，可以安全游泳。左边巨石可以跳水（胆大者挑战）</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">4:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🌺 Sunset Beach 日落海滩</div>
-            <div class="event-desc">沿海岸线向东，欣赏北岸标志性海滩。8月风景也很美，可漫步沙滩拍照</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">6:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🍽️ 晚餐：返回途中 Haleiwa Joe's</div>
-            <div class="event-desc">北岸当地海鲜餐厅，新鲜 mahi-mahi 鱼、虾 tacos，人均 $35–$55。或返回威基基后在 Marukame Udon（乌冬面，超便宜 $8）轻食</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- DAY 5 -->
-  <div class="day-card d5">
-    <div class="day-header">
-      <div class="day-num">D5</div>
-      <div>
-        <div class="day-title">购物 · 唐人街 · Luau 夜宴</div>
-        <div class="day-theme">📅 8月11日（周一）</div>
+    <!-- DAY 5 -->
+    <div class="day-card d5">
+      <div class="day-header">
+        <div class="day-num">D5</div>
+        <div>
+          <div class="day-title">购物 · 唐人街 · Luau 夜宴</div>
+          <div class="day-theme">📅 8月11日（周一）</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="timeline">
+          <li>
+            <span class="time-badge">9:00 AM</span>
+            <div class="event-content">
+              <div class="event-name">🏛️ Chinatown Honolulu 唐人街</div>
+              <div class="event-desc">华人移民历史 150+ 年，早市、鲜花摊、港式茶餐厅、亚洲食品杂货</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">10:30 AM</span>
+            <div class="event-content">
+              <div class="event-name">🐬 可选：Sea Life Park 海洋公园</div>
+              <div class="event-desc">海豚、海狮表演，可体验 Swim with Dolphins（$225/人）。门票 $40/人</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">12:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🍱 午餐：Helena's Hawaiian Food</div>
+              <div class="event-desc">James Beard 奖传奇小店，Oxtail Soup + Kalua Pig 必点，人均 $20</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">2:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🛍️ Ala Moana Center 大采购 <span class="tag tag-must">购物天堂</span></div>
+              <div class="event-desc"><strong>特产必买</strong>：Macadamia Nuts、Kona 咖啡、夏威夷海盐、Aloha 衬衫、Honolulu Cookie</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">4:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🚌 前往 Luau 集合地点</div>
+              <div class="event-desc">酒店大堂通常有巴士接送，提前确认出发时间</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">5:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🌺 Paradise Cove Luau <span class="tag tag-must">夏威夷文化精华！</span></div>
+              <div class="event-desc">Ko Olina 海岸，Kalua 烤猪开坑仪式 + 火舞 + Hula 表演。票价 $135–$175/人，建议提前订购</div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="day-body">
-      <ul class="timeline">
-        <li>
-          <span class="time-badge">9:00 AM</span>
-          <div class="event-content">
-            <div class="event-name">🏛️ Chinatown Honolulu 夏威夷唐人街</div>
-            <div class="event-desc">夏威夷历史最悠久的街区，华人移民历史超 150 年。有早市、鲜花摊、港式茶餐厅、亚洲食品杂货。非常接地气，值得一逛</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">10:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">🐬 可选：Sea Life Park 海洋公园</div>
-            <div class="event-desc">适合全家人的海洋主题乐园，有海豚、海狮、企鹅表演。可以体验 <strong>Swim with Dolphins</strong> 项目（$225/人，价格不菲但非常难忘）。门票 $40/人</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">12:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🍱 午餐：Helena's Hawaiian Food</div>
-            <div class="event-desc">荣获 James Beard 美国美食奖的传奇平民小店，Oxtail Soup（牛尾汤）和 Poi（夏威夷传统芋泥）必点，人均 $20</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">2:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🛍️ Ala Moana Center 大采购 <span class="tag tag-must">购物天堂</span></div>
-            <div class="event-desc">
-              全美最大露天购物中心，面积超大<br>
-              <strong>特产必买清单</strong>：夏威夷豆（Macadamia Nuts）、Kona 咖啡、夏威夷海盐、Aloha 衬衫、Honolulu Cookie Company 饼干<br>
-              <strong>高档品牌</strong>：有时比大陆省税（夏威夷消费税 4.7%，Ala Moana 区无额外税）
-            </div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">4:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🎭 前往 Luau 集合地点</div>
-            <div class="event-desc">通常酒店大堂有巴士接送，提前确认出发时间</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">5:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🌺 Paradise Cove Luau <span class="tag tag-must">夏威夷传统文化精华！</span></div>
-            <div class="event-desc">
-              地址：Ko Olina 海岸，约 40 分钟车程<br>
-              夏威夷最大、最负盛名的 Luau（传统夏威夷宴会）<br>
-              包含：<strong>Kalua 烤猪</strong>开坑仪式、传统 Poi 食物、火舞表演、Hula 舞蹈、槌球、钓鱼游戏<br>
-              票价约 $135–$175/人，建议提前网上订购<br>
-              💡 全程约 4 小时，日落时分开始，非常壮观
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- DAY 6 -->
-  <div class="day-card d6">
-    <div class="day-header">
-      <div class="day-num">D6</div>
-      <div>
-        <div class="day-title">最后早晨 · 返程启程</div>
-        <div class="day-theme">📅 8月12日（周二）</div>
+    <!-- DAY 6 -->
+    <div class="day-card d6">
+      <div class="day-header">
+        <div class="day-num">D6</div>
+        <div>
+          <div class="day-title">最后早晨 · 返程启程</div>
+          <div class="day-theme">📅 8月12日（周二）· 然后 8/13 9AM 到达 Albany</div>
+        </div>
+      </div>
+      <div class="day-body">
+        <ul class="timeline">
+          <li>
+            <span class="time-badge">8:30 AM</span>
+            <div class="event-content">
+              <div class="event-name">🌊 最后一次威基基海滩</div>
+              <div class="event-desc">早晨人少，海水最清澈。静静坐在沙滩，感受最后的夏威夷海风</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">10:00 AM</span>
+            <div class="event-content">
+              <div class="event-name">☕ 最后早餐：Eggs 'n Things <span class="tag tag-food">招牌</span></div>
+              <div class="event-desc">招牌：草莓鲜奶油可丽饼（Strawberry Crepe），人均 $20</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">11:30 AM</span>
+            <div class="event-content">
+              <div class="event-name">🧳 退房 &amp; 最后购物</div>
+              <div class="event-desc">行李可寄存酒店，逛 International Marketplace + ABC Store 扫最后纪念品</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">12:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🍜 午餐：Marukame Udon</div>
+              <div class="event-desc">现做乌冬面，$8–$12，轻松不撑肚，适合登机前吃</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">11:50 AM</span>
+            <div class="event-content">
+              <div class="event-name">🚕 前往 HNL 机场</div>
+              <div class="event-desc">Uber/Lyft 约 30 分钟，建议 <strong>2:50 PM 航班提前 3 小时</strong>到达机场办理登机手续</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">2:50 PM</span>
+            <div class="event-content">
+              <div class="event-name">✈️ 返程出发 · Mahalo, Hawaii!</div>
+              <div class="event-desc">夏威夷时间 2:50 PM 起飞，经转机后次日上午 <strong>9:00 AM 抵达 Albany（ALB）</strong>！达到家，记得展示照片给望不到的人看看 🌺</div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="day-body">
-      <ul class="timeline">
-        <li>
-          <span class="time-badge">7:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">🌊 最后一次威基基海滩</div>
-            <div class="event-desc">早上的海滩人少，海水最清澈。带上浮潜面罩，或只是坐在沙滩上感受海风，享受最后的夏威夷时光</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">9:00 AM</span>
-          <div class="event-content">
-            <div class="event-name">☕ 最后早餐：Eggs 'n Things <span class="tag tag-food">招牌</span></div>
-            <div class="event-desc">夏威夷早餐代表，招牌：草莓鲜奶油可丽饼（Strawberry Crepe），人均 $20</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">10:30 AM</span>
-          <div class="event-content">
-            <div class="event-name">🧳 退房 & 最后购物</div>
-            <div class="event-desc">退房后行李可寄存酒店。前往 International Marketplace（威基基购物中心）扫货最后纪念品，ABC Store 补货夏威夷特产</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">12:00 PM</span>
-          <div class="event-content">
-            <div class="event-name">🍽️ 午餐：Marukame Udon 或 Waikiki Yokocho</div>
-            <div class="event-desc">Marukame Udon：现做乌冬面，超便宜 $8–$12，但排队较长。Waikiki Yokocho：威基基横丁，多家日式小馆集合</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">1:30 PM</span>
-          <div class="event-content">
-            <div class="event-name">🚕 前往 HNL 机场</div>
-            <div class="event-desc">Uber/Lyft 约 30 分钟，建议下午航班提前 2.5–3 小时到机场。回国前记得退还租车（如有）</div>
-          </div>
-        </li>
-        <li>
-          <span class="time-badge">下午</span>
-          <div class="event-content">
-            <div class="event-name">✈️ 返程出发 · Mahalo, Hawaii!</div>
-            <div class="event-desc">Mahalo 是夏威夷语"谢谢"，带着满满的 Aloha 精神踏上归途</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- 餐厅汇总 -->
+  </div><!-- /days-grid -->
+
+  <!-- 精选餐厅（下拉筛选）-->
   <div class="tip-section">
     <h2>🍽️ 精选餐厅一览</h2>
-    <table class="restaurant-table">
-      <tr><th>餐厅</th><th>类型</th><th>人均</th><th>推荐菜</th></tr>
-      <tr><td><strong>Duke's Waikiki</strong></td><td>夏威夷海鲜</td><td class="price">$35–$50</td><td>Seafood Nachos、Hula Pie</td></tr>
-      <tr><td><strong>Roy's Waikiki</strong></td><td>夏威夷融合（高档）</td><td class="price">$60–$80</td><td>黑糖酥皮蝴蝶鱼、熔岩巧克力</td></tr>
-      <tr><td><strong>Giovanni's Shrimp Truck</strong></td><td>北岸路边虾车</td><td class="price">$15</td><td>蒜香奶油虾饭</td></tr>
-      <tr><td><strong>Helena's Hawaiian Food</strong></td><td>传统夏威夷（名店）</td><td class="price">$20</td><td>Oxtail Soup、Kalua Pig</td></tr>
-      <tr><td><strong>Eggs 'n Things</strong></td><td>夏威夷早餐</td><td class="price">$20</td><td>草莓可丽饼、Macadamia 松饼</td></tr>
-      <tr><td><strong>Marukame Udon</strong></td><td>日式乌冬面（平价）</td><td class="price">$8–$12</td><td>Nabeyaki Udon</td></tr>
-      <tr><td><strong>Matsumoto's Shave Ice</strong></td><td>夏威夷刨冰</td><td class="price">$5–$8</td><td>经典三色刨冰</td></tr>
-    </table>
+    <div class="rest-select-row">
+      <label for="restCat">按类型筛选：</label>
+      <select id="restCat" onchange="filterRest(this.value)">
+        <option value="all">🍽️ 全部餐厅（11家）</option>
+        <option value="hawaiian">🏝️ 夏威夷本地特色</option>
+        <option value="fusion">🍴 夏威夷融合料理</option>
+        <option value="japanese">🍜 日式料理</option>
+        <option value="dessert">🍦 甜品 / 小吃</option>
+      </select>
+    </div>
+    <div id="restList" class="rest-list"></div>
   </div>
 
   <!-- 实用贴士 -->
@@ -611,9 +914,137 @@
   </div>
 
   <div class="footer">
-    🌺 Aloha & Mahalo · 祝旅途愉快！Made with ❤️ for your Hawaii family trip · 2025
+    🌺 Aloha &amp; Mahalo · 祝旅途愉快！Made with ❤️ for your Hawaii family trip · 2026
   </div>
 
-</div>
+</div><!-- /container -->
+
+<script>
+  // featured: top-3 必吃，显示为第一行大卡片
+  var RDATA = [
+    {name:"Roy's Waikiki",           cat:"fusion",   catLabel:"🍴 夏威夷融合料理",  stars:5, reserve:true,  featured:true,  price:"$60–$80",    dish:"黑糖酥皮蝴蝶鱼、熔岩巧克力蛋糕",       note:"名厨 Roy Yamaguchi 创办，夏威夷融合料理殿堂级"},
+    {name:"Helena's Hawaiian Food",   cat:"hawaiian", catLabel:"🏝️ 夏威夷本地特色",  stars:5,               featured:true,  price:"$20",        dish:"Oxtail Soup、Kalua Pig、Poi",          note:"James Beard 奖得主，70年传奇平民小店"},
+    {name:"Giovanni's Shrimp Truck",  cat:"hawaiian", catLabel:"🏝️ 夏威夷本地特色",  stars:5,               featured:true,  price:"$15",        dish:"蒜香奶油虾饭（Scampi Style）",           note:"北岸传奇路边虾车，营业 30+ 年必打卡"},
+    {name:"Paradise Cove Luau",       cat:"hawaiian", catLabel:"🏝️ 夏威夷传统宴会",  stars:5, reserve:true,                  price:"$135–$175",  dish:"Kalua 烤猪、传统 Poi、夏威夷沙拉",      note:"欧胡岛最大 Luau，含火舞 & Hula 全套表演"},
+    {name:"Matsumoto's Shave Ice",    cat:"dessert",  catLabel:"🍦 甜品/小吃",       stars:5,                               price:"$5–$8",      dish:"经典三色刨冰、加冰淇淋底",              note:"北岸 Haleiwa 70年老店，全球必打卡圣地"},
+    {name:"Duke's Waikiki",           cat:"hawaiian", catLabel:"🏝️ 夏威夷本地特色",  stars:4, reserve:true,                  price:"$35–$50",    dish:"Seafood Nachos、Hula Pie",              note:"冲浪传奇 Duke Kahanamoku 命名，威基基海滩绝佳位置"},
+    {name:"Marukame Udon",            cat:"japanese", catLabel:"🍜 日式料理",         stars:4,                               price:"$8–$12",     dish:"Nabeyaki Udon、Teriyaki Chicken Udon",  note:"威基基平价现做乌冬面，性价比超高"},
+    {name:"Goma Tei Ramen",           cat:"japanese", catLabel:"🍜 日式料理",         stars:4,                               price:"$14–$18",    dish:"芝麻拉面、叉烧套餐",                    note:"Kaimuki 区人气拉面，本地人强烈推荐"},
+    {name:"Waiola Shave Ice",         cat:"dessert",  catLabel:"🍦 甜品/小吃",        stars:4,                               price:"$5–$7",      dish:"Azuki 豆刨冰、Lilikoi 百香果口味",       note:"Kapahulu 区本地人喜爱的刨冰老店"},
+    {name:"Dole Whip",                cat:"dessert",  catLabel:"🍦 甜品/小吃",        stars:4,                               price:"$6–$9",      dish:"菠萝 Dole Whip 软冰淇淋卷",             note:"Dole 菠萝园专属，全球 Dole Whip 爱好者朝圣地"},
+    {name:"L&L Hawaiian BBQ",         cat:"hawaiian", catLabel:"🏝️ 夏威夷本地特色",  stars:3,                               price:"$10–$14",    dish:"Plate Lunch（白饭+主菜+沙拉）",         note:"本地人日常午餐首选，全岛连锁"},
+  ];
+
+  var CAT_COLORS = {
+    hawaiian: {border:"#40916c", bg:"#f0faf5"},
+    fusion:   {border:"#e85d04", bg:"#fff6f2"},
+    japanese: {border:"#7b2d8b", bg:"#faf4ff"},
+    american: {border:"#0096c7", bg:"#f0f8ff"},
+    dessert:  {border:"#f4a261", bg:"#fffaf0"},
+  };
+
+  function makeStars(n) {
+    return '<span style="color:#f4b400;letter-spacing:2px">' + '★'.repeat(n) + '</span>' +
+           '<span style="color:#ddd;letter-spacing:2px">' + '★'.repeat(5-n) + '</span>' +
+           ' <small style="color:#888;font-size:0.82em">' + n + '.0 / 5.0</small>';
+  }
+
+  function makeCard(r, isFeatured) {
+    var c = CAT_COLORS[r.cat] || {border:'#999', bg:'#f8f8f8'};
+    var card = document.createElement('div');
+    card.className = isFeatured ? 'rest-card rest-card-featured' : 'rest-card';
+    card.style.borderLeftColor = c.border;
+    card.style.background = c.bg;
+    var reserveBadge = r.reserve ? '<span class="rc-reserve">📅 需提前预约</span>' : '';
+    var mustBadge = isFeatured ? '<span class="rc-must">🔥 必吃</span>' : '';
+    card.innerHTML =
+      '<div class="rc-name">' + r.name + mustBadge + reserveBadge + '</div>' +
+      '<div class="rc-cat">' + r.catLabel + '</div>' +
+      '<div class="rc-stars">' + makeStars(r.stars) + '</div>' +
+      '<span class="rc-price">人均 ' + r.price + '</span>' +
+      '<div class="rc-dish">🍴 ' + r.dish + '</div>' +
+      '<div class="rc-note">💬 ' + r.note + '</div>';
+    return card;
+  }
+
+  function renderCards(data) {
+    var list = document.getElementById('restList');
+    if (!list) return;
+    list.innerHTML = '';
+    if (!data.length) {
+      list.innerHTML = '<p style="color:#888;text-align:center;padding:24px;width:100%">暂无该类型餐厅</p>';
+      return;
+    }
+    var featured = data.filter(function(r){ return r.featured; });
+    var rest     = data.filter(function(r){ return !r.featured; }).sort(function(a,b){ return b.stars - a.stars; });
+    // First row: featured big cards (equal width, fill row)
+    if (featured.length) {
+      var featRow = document.createElement('div');
+      featRow.style.cssText = 'display:flex;gap:10px;width:100%;margin-bottom:10px;';
+      featured.forEach(function(r) {
+        var card = makeCard(r, true);
+        card.style.flex = '1 1 0';
+        featRow.appendChild(card);
+      });
+      list.appendChild(featRow);
+    }
+    // Remaining cards: normal small flex cards
+    // Split remaining cards into rows of 4
+    var row1 = rest.slice(0, 4);
+    var row2 = rest.slice(4);
+    [row1, row2].forEach(function(rowData) {
+      if (!rowData.length) return;
+      var rowDiv = document.createElement('div');
+      rowDiv.style.cssText = 'display:flex;gap:10px;width:100%;margin-top:10px;';
+      rowData.forEach(function(r) {
+        var card = makeCard(r, false);
+        card.style.flex = '1 1 0';
+        rowDiv.appendChild(card);
+      });
+      list.appendChild(rowDiv);
+    });
+  }
+
+  function filterRest(cat) {
+    var filtered = cat === 'all' ? RDATA : RDATA.filter(function(r){ return r.cat === cat; });
+    renderCards(filtered);
+  }
+
+  var RESTAURANT_HINTS = [
+    {match:"Duke's Waikiki",         cuisine:"🏝️ 夏威夷本地特色"},
+    {match:"Plate Lunch",            cuisine:"🏝️ 夏威夷本地特色"},
+    {match:"Roy's Waikiki",          cuisine:"🍴 夏威夷融合料理"},
+    {match:"Waiola Shave Ice",       cuisine:"🍦 甜品/小吃"},
+    {match:"Giovanni's Shrimp Truck",cuisine:"🏝️ 夏威夷本地特色"},
+    {match:"Helena's Hawaiian Food", cuisine:"🏝️ 传统夏威夷料理"},
+    {match:"Paradise Cove Luau",     cuisine:"🏝️ 夏威夷传统宴会"},
+    {match:"Marukame Udon",          cuisine:"🍜 日式料理"},
+  ];
+
+  function handleCheck(cb) {
+    cb.closest('li').classList.toggle('done', cb.checked);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Highlight restaurant timeline items dynamically
+    document.querySelectorAll('.timeline li').forEach(function(li) {
+      var en = li.querySelector('.event-name');
+      if (!en) return;
+      var txt = en.textContent;
+      RESTAURANT_HINTS.forEach(function(h) {
+        if (txt.indexOf(h.match) !== -1) {
+          li.classList.add('rest-item');
+          var badge = document.createElement('span');
+          badge.className = 'cuisine-badge';
+          badge.textContent = h.cuisine;
+          en.appendChild(badge);
+        }
+      });
+    });
+    // Initial render of restaurant cards
+    renderCards(RDATA);
+  });
+</script>
 </body>
 </html>
+
