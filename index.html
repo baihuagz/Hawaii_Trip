@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌺 夏威夷欧胡岛 · 六天五夜行程 | 8/7–8/12</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 40%, #48cae4 70%, #90e0ef 100%);
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .header {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 36px 40px;
+    text-align: center;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+  }
+  .header h1 { font-size: 2.4em; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .header .subtitle { font-size: 1.15em; margin-top: 8px; opacity: 0.92; }
+  .header .meta { margin-top: 16px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+  .meta-item { background: rgba(255,255,255,0.2); border-radius: 30px; padding: 6px 18px; font-size: 0.9em; }
+
+  .alert-box {
+    background: #fff3cd;
+    border-left: 5px solid #ff9800;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    color: #7d4a00;
+  }
+  .alert-box h3 { margin-bottom: 8px; font-size: 1em; }
+  .alert-box ul { padding-left: 20px; line-height: 2; font-size: 0.92em; }
+
+  .day-card {
+    background: white;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,50,0.12);
+  }
+  .day-header {
+    padding: 18px 28px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .day-num {
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3em; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .day-title { font-size: 1.25em; font-weight: 700; }
+  .day-theme { font-size: 0.88em; opacity: 0.9; margin-top: 2px; }
+
+  .d1 .day-header { background: linear-gradient(90deg, #f77f00, #f4a261); }
+  .d2 .day-header { background: linear-gradient(90deg, #2d6a4f, #40916c); }
+  .d3 .day-header { background: linear-gradient(90deg, #0077b6, #0096c7); }
+  .d4 .day-header { background: linear-gradient(90deg, #7b2d8b, #9d4edd); }
+  .d5 .day-header { background: linear-gradient(90deg, #c1121f, #e63946); }
+  .d6 .day-header { background: linear-gradient(90deg, #457b9d, #1d3557); }
+
+  .day-body { padding: 20px 28px; }
+  .timeline { list-style: none; }
+  .timeline li {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .time-badge {
+    background: #f0f4ff;
+    border-radius: 8px;
+    padding: 3px 10px;
+    font-size: 0.8em;
+    color: #3d5a80;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+    min-width: 70px;
+    text-align: center;
+  }
+  .event-content { flex: 1; }
+  .event-name { font-weight: 600; color: #1a1a2e; font-size: 0.98em; }
+  .event-desc { color: #555; font-size: 0.87em; margin-top: 3px; line-height: 1.5; }
+  .tag {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 1px 9px;
+    font-size: 0.74em;
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .tag-must { background: #ffe0e0; color: #c0392b; }
+  .tag-food { background: #e0f5e9; color: #27ae60; }
+  .tag-tip { background: #e8f4ff; color: #1565c0; }
+  .tag-book { background: #fff0cc; color: #b8860b; }
+
+  .divider { border: none; border-top: 1px dashed #e0e0e0; margin: 12px 0; }
+
+  .tip-section {
+    background: white;
+    border-radius: 18px;
+    padding: 24px 28px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 24px rgba(0,0,50,0.12);
+  }
+  .tip-section h2 { color: #1a1a2e; margin-bottom: 16px; font-size: 1.15em; border-bottom: 2px solid #e0e8ff; padding-bottom: 8px; }
+  .tip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .tip-grid { grid-template-columns: 1fr; } }
+  .tip-card {
+    background: #f8faff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    border-left: 4px solid #0096c7;
+  }
+  .tip-card h4 { color: #0077b6; font-size: 0.9em; margin-bottom: 6px; }
+  .tip-card p, .tip-card li { color: #444; font-size: 0.85em; line-height: 1.7; }
+  .tip-card ul { padding-left: 16px; }
+
+  .restaurant-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .restaurant-table th { background: #f0f4ff; color: #3d5a80; padding: 8px 12px; text-align: left; font-size: 0.85em; }
+  .restaurant-table td { padding: 8px 12px; font-size: 0.85em; color: #333; border-bottom: 1px solid #f0f0f0; }
+  .restaurant-table tr:last-child td { border-bottom: none; }
+  .price { color: #27ae60; font-weight: 600; }
+
+  .footer { text-align: center; color: rgba(255,255,255,0.8); font-size: 0.85em; margin-top: 10px; padding-bottom: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 头部 -->
+  <div class="header">
+    <h1>🌺 夏威夷欧胡岛</h1>
+    <div class="subtitle">六天五夜家庭旅行 · The Laylow Autograph Collection</div>
+    <div class="meta">
+      <span class="meta-item">📅 2025年 8月7日 — 8月12日</span>
+      <span class="meta-item">👨‍👩‍👦 3人家庭出行</span>
+      <span class="meta-item">✈️ 去程 6:15AM → 1:20PM</span>
+      <span class="meta-item">🏨 威基基 Waikiki</span>
+    </div>
+  </div>
+
+  <!-- 重要提醒 -->
+  <div class="alert-box">
+    <h3>⚠️ 出发前必须提前预订（否则去不了！）</h3>
+    <ul>
+      <li>🐠 <strong>Hanauma Bay 浮潜</strong>：需提前 <strong>2天</strong> 上官网预约，旺季极易售罄（每人 $25）→ <a href="https://hanauma.honolulu.gov" target="_blank">hanauma.honolulu.gov</a></li>
+      <li>🌋 <strong>Diamond Head 钻石头山</strong>：需网上预约入场券 → <a href="https://gostateparks.hawaii.gov" target="_blank">gostateparks.hawaii.gov</a></li>
+      <li>⚓ <strong>珍珠港 USS Arizona Memorial</strong>：免费但需提前预约 → <a href="https://www.recreation.gov" target="_blank">recreation.gov</a>（或购买 $7 的优先通道套票）</li>
+      <li>🌺 <strong>Luau 夏威夷晚宴</strong>：建议提前 1–2 周网上订座</li>
+      <li>🚗 <strong>租车建议</strong>：北岸（Day 4）那天租一天车最方便，约 $60–$80/天</li>
+    </ul>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-card d1">
+    <div class="day-header">
+      <div class="day-num">D1</div>
+      <div>
+        <div class="day-title">抵达夏威夷 · 初见威基基</div>
+        <div class="day-theme">📅 8月7日（周四）</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">6:15 AM</span>
+          <div class="event-content">
+            <div class="event-name">✈️ 出发登机</div>
+            <div class="event-desc">出发机场起飞，飞行约 5.5 小时（注意：夏威夷比大陆时间慢 5–6 小时，抵达时当地才是下午）</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">1:20 PM</span>
+          <div class="event-content">
+            <div class="event-name">🛬 抵达 Daniel K. Inouye 国际机场（HNL）</div>
+            <div class="event-desc">取行李后叫 Uber/Lyft 前往酒店，约 20–30 分钟，费用约 $30–$40</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">2:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🏨 入住 The Laylow, Autograph Collection</div>
+            <div class="event-desc">地址：2299 Kuhio Ave, Honolulu。中世纪现代风格精品酒店，步行至威基基海滩仅 5 分钟<br>整理行李，换上泳装</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">4:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🏖️ 威基基海滩初体验 <span class="tag tag-must">必做</span></div>
+            <div class="event-desc">感受夏威夷海水，沿海滩边散步，欣赏钻石头山轮廓。海水清澈温暖（约 27°C），非常适合游泳</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">6:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🌅 Kuhio Beach 看日落</div>
+            <div class="event-desc">夏威夷8月日落约 7:15 PM，海边有免费 hula 舞表演</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">7:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🍽️ 晚餐：Duke's Waikiki <span class="tag tag-food">推荐</span></div>
+            <div class="event-desc">人均 $30–$50，正宗夏威夷海鲜，海滩边绝佳位置，以冲浪传奇 Duke Kahanamoku 命名。建议提前 OpenTable 订位</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-card d2">
+    <div class="day-header">
+      <div class="day-num">D2</div>
+      <div>
+        <div class="day-title">珍珠港 · 历史与城市</div>
+        <div class="day-theme">📅 8月8日（周五）</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">7:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">☕ 酒店早餐</div>
+            <div class="event-desc">The Laylow 内的 Hideout 餐厅，或附近 Egg 'n Things（夏威夷本地早餐名店）</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">8:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">⚓ 珍珠港 Pearl Harbor <span class="tag tag-must">必去</span> <span class="tag tag-book">需预约</span></div>
+            <div class="event-desc">
+              <strong>USS Arizona Memorial</strong>（免费，需预约）：乘船游览珍珠港湾，沉船遗址令人动容<br>
+              <strong>Battleship Missouri（密苏里号战列舰）</strong>：$35/人，二战结束签字现场<br>
+              <strong>Pacific Aviation Museum</strong>（可选）：$30/人，珍珠港事变珍贵文物<br>
+              💡 全程游览约 4–5 小时，建议早到避免人多
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">1:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🍜 午餐：Hawaii's Best Plate Lunch</div>
+            <div class="event-desc">附近找 L&L Hawaiian BBQ 或 Zippy's，体验本地人的 Plate Lunch（白饭+主菜+沙拉），人均约 $12</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">3:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🏛️ 伊奥拉尼宫 Iolani Palace</div>
+            <div class="event-desc">美国唯一一座真正皇家宫殿，末代夏威夷女王 Liliuokalani 曾在此被囚禁，历史与故事感极强。门票 $25/人</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">5:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🛍️ Ala Moana Center 逛街</div>
+            <div class="event-desc">全美最大露天购物中心，LV/Gucci/Coach 等品牌俱全，也有 Macy's 和本地特色店。顺便走到 Ala Moana Beach Park 吹吹海风</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">7:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🍽️ 晚餐：Roy's Waikiki <span class="tag tag-food">高档推荐</span></div>
+            <div class="event-desc">人均 $60–$80，夏威夷传奇名厨 Roy Yamaguchi 创办，夏威夷融合料理代表。代表菜：黑糖酥皮鱼、熔岩巧克力蛋糕</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-card d3">
+    <div class="day-header">
+      <div class="day-num">D3</div>
+      <div>
+        <div class="day-title">钻石头山 · 东海岸海湾</div>
+        <div class="day-theme">📅 8月9日（周六）</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">6:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">🌋 Diamond Head 钻石头山徒步 <span class="tag tag-must">必做</span> <span class="tag tag-book">需预约</span></div>
+            <div class="event-desc">
+              往返 3.2 公里，爬升 200 米，约 1.5–2 小时。<strong>务必早出发</strong>，8月正午烈日炎炎非常难受<br>
+              门票 $5/人（需网上预约）<br>
+              山顶可俯瞰整个威基基和太平洋，是欧胡岛最经典的风景之一
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">9:00 AM</span>
+          <div class="event-content">
+            <div class="event-name">🥞 早午餐：Kaimuki / Kapahulu 区</div>
+            <div class="event-desc">Goma Tei（日式拉面）或 Waiola Shave Ice（刨冰甜品，夏威夷经典），约步行 15 分钟</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">10:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">🐠 Hanauma Bay 浮潜 <span class="tag tag-must">强烈推荐</span> <span class="tag tag-book">必须提前2天预约！</span></div>
+            <div class="event-desc">
+              夏威夷最知名的浮潜地点，古老火山口形成的天然海湾，珊瑚礁保护完好，热带鱼超多<br>
+              门票 $25/人，8:00 AM 开放，<strong>当天 11:30 后停止入场</strong>，务必早去<br>
+              可在入口处租浮潜套装 ~$12。注意：禁止踩踏珊瑚礁
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">2:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🏔️ Makapu'u Lookout 观景台</div>
+            <div class="event-desc">欧胡岛东端最壮观的悬崖观景点，天气好时可见邻近岛屿，冬季可观鲸（8月偶有海豚）。约 30 分钟轻松步道</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">3:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🏖️ Kailua Beach 海滩 <span class="tag tag-must">必体验</span></div>
+            <div class="event-desc">多次被评为全美最美海滩，白沙粉细，海水碧蓝，风平浪静。比威基基更安静清幽，非常适合家人放松</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">6:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🍽️ 晚餐：Buzz's Lanikai（凯卢瓦附近）<span class="tag tag-food">推荐</span></div>
+            <div class="event-desc">本地经典牛排/海鲜餐厅，当地人喜爱，人均 $40–$60。或 Cinnamon's Restaurant（早午餐风格，份量大）</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-card d4">
+    <div class="day-header">
+      <div class="day-num">D4</div>
+      <div>
+        <div class="day-title">北岸 · 菠萝园 · 大蒜虾</div>
+        <div class="day-theme">📅 8月10日（周日）</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">8:00 AM</span>
+          <div class="event-content">
+            <div class="event-name">🚗 租车出发（建议今天租车）</div>
+            <div class="event-desc">北岸交通不便，强烈建议今天租车。Hertz/Avis/Enterprise 都在 Waikiki 附近，约 $65–$90/天。全程开 H1/H2 高速约 50 分钟</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">9:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">🍍 Dole Pineapple Plantation 菠萝园 <span class="tag tag-must">必体验</span></div>
+            <div class="event-desc">
+              地址：64-1550 Kamehameha Hwy, Wahiawa<br>
+              <strong>必买 Dole Whip 菠萝冰淇淋</strong>！香甜清凉，排队也值得<br>
+              可参加菠萝 Express 小火车游览（$12/人），穿越菠萝田
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">11:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">🦐 午餐：Giovanni's Shrimp Truck <span class="tag tag-must">必吃！</span></div>
+            <div class="event-desc">
+              北岸 Haleiwa 小镇旁最传奇的虾车，已营业 30+ 年<br>
+              <strong>经典蒜香奶油虾</strong>（Scampi Style）配白饭，$15/份<br>
+              💡 注意：是路边卡车，没有室内座位，有户外桌子
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">1:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🌊 Haleiwa 小镇漫步</div>
+            <div class="event-desc">北岸最有特色的冲浪小镇，彩色小屋、冲浪店、艺术画廊。去 <strong>Matsumoto's Shave Ice</strong> 吃夏威夷刨冰（超级经典！）</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">2:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🏄 Waimea Bay 韦麦阿湾</div>
+            <div class="event-desc">夏威夷最著名的冲浪海滩（冬季有 10 米大浪），夏天浪小，可以安全游泳。左边巨石可以跳水（胆大者挑战）</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">4:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🌺 Sunset Beach 日落海滩</div>
+            <div class="event-desc">沿海岸线向东，欣赏北岸标志性海滩。8月风景也很美，可漫步沙滩拍照</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">6:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🍽️ 晚餐：返回途中 Haleiwa Joe's</div>
+            <div class="event-desc">北岸当地海鲜餐厅，新鲜 mahi-mahi 鱼、虾 tacos，人均 $35–$55。或返回威基基后在 Marukame Udon（乌冬面，超便宜 $8）轻食</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day-card d5">
+    <div class="day-header">
+      <div class="day-num">D5</div>
+      <div>
+        <div class="day-title">购物 · 唐人街 · Luau 夜宴</div>
+        <div class="day-theme">📅 8月11日（周一）</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">9:00 AM</span>
+          <div class="event-content">
+            <div class="event-name">🏛️ Chinatown Honolulu 夏威夷唐人街</div>
+            <div class="event-desc">夏威夷历史最悠久的街区，华人移民历史超 150 年。有早市、鲜花摊、港式茶餐厅、亚洲食品杂货。非常接地气，值得一逛</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">10:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">🐬 可选：Sea Life Park 海洋公园</div>
+            <div class="event-desc">适合全家人的海洋主题乐园，有海豚、海狮、企鹅表演。可以体验 <strong>Swim with Dolphins</strong> 项目（$225/人，价格不菲但非常难忘）。门票 $40/人</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">12:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🍱 午餐：Helena's Hawaiian Food</div>
+            <div class="event-desc">荣获 James Beard 美国美食奖的传奇平民小店，Oxtail Soup（牛尾汤）和 Poi（夏威夷传统芋泥）必点，人均 $20</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">2:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🛍️ Ala Moana Center 大采购 <span class="tag tag-must">购物天堂</span></div>
+            <div class="event-desc">
+              全美最大露天购物中心，面积超大<br>
+              <strong>特产必买清单</strong>：夏威夷豆（Macadamia Nuts）、Kona 咖啡、夏威夷海盐、Aloha 衬衫、Honolulu Cookie Company 饼干<br>
+              <strong>高档品牌</strong>：有时比大陆省税（夏威夷消费税 4.7%，Ala Moana 区无额外税）
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">4:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🎭 前往 Luau 集合地点</div>
+            <div class="event-desc">通常酒店大堂有巴士接送，提前确认出发时间</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">5:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🌺 Paradise Cove Luau <span class="tag tag-must">夏威夷传统文化精华！</span></div>
+            <div class="event-desc">
+              地址：Ko Olina 海岸，约 40 分钟车程<br>
+              夏威夷最大、最负盛名的 Luau（传统夏威夷宴会）<br>
+              包含：<strong>Kalua 烤猪</strong>开坑仪式、传统 Poi 食物、火舞表演、Hula 舞蹈、槌球、钓鱼游戏<br>
+              票价约 $135–$175/人，建议提前网上订购<br>
+              💡 全程约 4 小时，日落时分开始，非常壮观
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-card d6">
+    <div class="day-header">
+      <div class="day-num">D6</div>
+      <div>
+        <div class="day-title">最后早晨 · 返程启程</div>
+        <div class="day-theme">📅 8月12日（周二）</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li>
+          <span class="time-badge">7:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">🌊 最后一次威基基海滩</div>
+            <div class="event-desc">早上的海滩人少，海水最清澈。带上浮潜面罩，或只是坐在沙滩上感受海风，享受最后的夏威夷时光</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">9:00 AM</span>
+          <div class="event-content">
+            <div class="event-name">☕ 最后早餐：Eggs 'n Things <span class="tag tag-food">招牌</span></div>
+            <div class="event-desc">夏威夷早餐代表，招牌：草莓鲜奶油可丽饼（Strawberry Crepe），人均 $20</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">10:30 AM</span>
+          <div class="event-content">
+            <div class="event-name">🧳 退房 & 最后购物</div>
+            <div class="event-desc">退房后行李可寄存酒店。前往 International Marketplace（威基基购物中心）扫货最后纪念品，ABC Store 补货夏威夷特产</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">12:00 PM</span>
+          <div class="event-content">
+            <div class="event-name">🍽️ 午餐：Marukame Udon 或 Waikiki Yokocho</div>
+            <div class="event-desc">Marukame Udon：现做乌冬面，超便宜 $8–$12，但排队较长。Waikiki Yokocho：威基基横丁，多家日式小馆集合</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">1:30 PM</span>
+          <div class="event-content">
+            <div class="event-name">🚕 前往 HNL 机场</div>
+            <div class="event-desc">Uber/Lyft 约 30 分钟，建议下午航班提前 2.5–3 小时到机场。回国前记得退还租车（如有）</div>
+          </div>
+        </li>
+        <li>
+          <span class="time-badge">下午</span>
+          <div class="event-content">
+            <div class="event-name">✈️ 返程出发 · Mahalo, Hawaii!</div>
+            <div class="event-desc">Mahalo 是夏威夷语"谢谢"，带着满满的 Aloha 精神踏上归途</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 餐厅汇总 -->
+  <div class="tip-section">
+    <h2>🍽️ 精选餐厅一览</h2>
+    <table class="restaurant-table">
+      <tr><th>餐厅</th><th>类型</th><th>人均</th><th>推荐菜</th></tr>
+      <tr><td><strong>Duke's Waikiki</strong></td><td>夏威夷海鲜</td><td class="price">$35–$50</td><td>Seafood Nachos、Hula Pie</td></tr>
+      <tr><td><strong>Roy's Waikiki</strong></td><td>夏威夷融合（高档）</td><td class="price">$60–$80</td><td>黑糖酥皮蝴蝶鱼、熔岩巧克力</td></tr>
+      <tr><td><strong>Giovanni's Shrimp Truck</strong></td><td>北岸路边虾车</td><td class="price">$15</td><td>蒜香奶油虾饭</td></tr>
+      <tr><td><strong>Helena's Hawaiian Food</strong></td><td>传统夏威夷（名店）</td><td class="price">$20</td><td>Oxtail Soup、Kalua Pig</td></tr>
+      <tr><td><strong>Eggs 'n Things</strong></td><td>夏威夷早餐</td><td class="price">$20</td><td>草莓可丽饼、Macadamia 松饼</td></tr>
+      <tr><td><strong>Marukame Udon</strong></td><td>日式乌冬面（平价）</td><td class="price">$8–$12</td><td>Nabeyaki Udon</td></tr>
+      <tr><td><strong>Matsumoto's Shave Ice</strong></td><td>夏威夷刨冰</td><td class="price">$5–$8</td><td>经典三色刨冰</td></tr>
+    </table>
+  </div>
+
+  <!-- 实用贴士 -->
+  <div class="tip-section">
+    <h2>💡 出行实用贴士</h2>
+    <div class="tip-grid">
+      <div class="tip-card">
+        <h4>🚗 交通建议</h4>
+        <ul>
+          <li>威基基市区：步行 + Uber/Lyft（无需租车）</li>
+          <li>珍珠港、东海岸：Uber 可到，约 $25–$35 单程</li>
+          <li><strong>北岸那天必须租车</strong>，公共汽车太慢</li>
+          <li>TheBus 公交：$3/次，但班次少不方便老人</li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h4>🌤️ 8月天气</h4>
+        <ul>
+          <li>温度：白天 28–33°C，晚上 24–26°C</li>
+          <li>海水温度：约 27°C，全年最温暖时段</li>
+          <li>偶有短暂阵雨（"液态阳光"），不影响出行</li>
+          <li>防晒非常重要！SPF 50+ 推荐</li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h4>💰 预算参考（3人，含门票餐饮）</h4>
+        <ul>
+          <li>餐饮：$150–$250/天</li>
+          <li>景点门票：$50–$100/人/天</li>
+          <li>Luau：$135–$175/人（一次性）</li>
+          <li>租车：$65–$90/天（北岸那天）</li>
+          <li>总估算：$3000–$4500（不含机票酒店）</li>
+        </ul>
+      </div>
+      <div class="tip-card">
+        <h4>👨‍👩‍👦 带父母出行建议</h4>
+        <ul>
+          <li>Diamond Head 步道有台阶，带好饮用水</li>
+          <li>Hanauma Bay 有轮椅无障碍通道</li>
+          <li>珍珠港参观需走较多路，穿舒适的鞋</li>
+          <li>Luau 全程坐着看表演，非常适合老人</li>
+          <li>Kailua Beach 浪小，适合老人游泳</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    🌺 Aloha & Mahalo · 祝旅途愉快！Made with ❤️ for your Hawaii family trip · 2025
+  </div>
+
+</div>
+</body>
+</html>
