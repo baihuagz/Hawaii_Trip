@@ -113,26 +113,13 @@
   .alert-box h3 { margin-bottom: 14px; font-size: 1em; }
   .alert-box a { color: #0077b6; }
   .checklist { list-style: none; padding: 0; }
-  .checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 7px 0;
-    border-bottom: 1px dashed rgba(180,120,0,0.2);
-    font-size: 0.91em;
-    line-height: 1.6;
-    cursor: pointer;
-  }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px dashed rgba(180,120,0,0.2); font-size: 0.91em; line-height: 1.6; }
   .checklist li:last-child { border-bottom: none; }
-  .checklist li input[type=checkbox] {
-    margin-top: 3px;
-    width: 17px; height: 17px;
-    flex-shrink: 0;
-    accent-color: #e07b00;
-    cursor: pointer;
-  }
+  .checklist li input[type=checkbox] { margin-top: 3px; width: 17px; height: 17px; flex-shrink: 0; accent-color: #e07b00; cursor: pointer; }
   .checklist li.done { opacity: 0.45; }
   .checklist li.done span { text-decoration: line-through; }
+  .cl-date { flex-shrink:0; display:inline-block; min-width:100px; text-align:center; background:#e07b00; color:white; font-weight:700; font-size:0.74em; border-radius:8px; padding:3px 9px; margin-top:2px; white-space:nowrap; }
+  .cl-book-hint { display:inline-block; background:#fff0e0; border:1px solid #f4a261; color:#a04000; font-size:0.73em; font-weight:600; border-radius:20px; padding:0 7px; margin-left:6px; vertical-align:middle; white-space:nowrap; }
   .flight-row {
     display: flex;
     gap: 10px;
@@ -216,7 +203,8 @@
     white-space: nowrap;
     flex-shrink: 0;
     margin-top: 2px;
-    min-width: 66px;
+    min-width: 76px;
+    width: 76px;
     text-align: center;
     letter-spacing: 0.3px;
   }
@@ -478,25 +466,31 @@
 
   <!-- 重要提醒 -->
   <div class="alert-box">
-    <h3>✅ 出发前必须提前预订清单（勾选已完成项）</h3>
+    <h3>✅ 出发前必须提前预订清单（按活动日期排序，勾选已完成项）</h3>
     <ul class="checklist" id="bookingList">
       <li><input type="checkbox" onchange="handleCheck(this)">
-        <span>🐠 <strong>Hanauma Bay 浮潜</strong>：需提前 <strong>2天</strong> 上官网预约，旺季极易售罄（每人 $25） → <a href="https://hanauma.honolulu.gov" target="_blank">hanauma.honolulu.gov</a></span>
+        <span class="cl-date">8/8 7:30 PM</span>
+        <span>🍽️ <strong>Roy's Waikiki 晚餐</strong>：建议提前 1 周预约，旺季热门时段易满 <span class="cl-book-hint">📆 尽早预订</span> → <a href="https://www.opentable.com" target="_blank">OpenTable</a> 或直接打电话</span>
       </li>
       <li><input type="checkbox" onchange="handleCheck(this)">
-        <span>🌋 <strong>Diamond Head 钒石头山</strong>：需网上预约入场券 → <a href="https://gostateparks.hawaii.gov" target="_blank">gostateparks.hawaii.gov</a></span>
+        <span class="cl-date">8/9 7:30 AM</span>
+        <span>🌋 <strong>Diamond Head 钻石头山</strong>：需网上提前预约入场券 <span class="cl-book-hint">📆 提前几天预约</span> → <a href="https://gostateparks.hawaii.gov" target="_blank">gostateparks.hawaii.gov</a></span>
       </li>
       <li><input type="checkbox" onchange="handleCheck(this)">
-        <span>⚓ <strong>珍珠港 USS Arizona Memorial</strong>：免费但需提前预约 → <a href="https://www.recreation.gov" target="_blank">recreation.gov</a>（或购 $7 优先通道套票）</span>
+        <span class="cl-date">8/9 10:30 AM</span>
+        <span>🐠 <strong>Hanauma Bay 浮潜</strong>：<strong>必须在 8/7 当天抢票</strong>（提前恰好 2 天开放预约，极易售罄！$25/人）<span class="cl-book-hint">⚠️ 8/7 当天抢</span> → <a href="https://hanauma.honolulu.gov" target="_blank">hanauma.honolulu.gov</a></span>
       </li>
       <li><input type="checkbox" onchange="handleCheck(this)">
-        <span>🌺 <strong>Luau 夏威夷晚宴</strong>：建议提前 1–2 周网上订座 → <a href="https://www.paradisecovehawaii.com" target="_blank">paradisecovehawaii.com</a></span>
+        <span class="cl-date">8/10 全天</span>
+        <span>🚗 <strong>租车（Day 4 北岸）</strong>：旺季车辆紧张，建议现在就预订，约 $60–$80/天 <span class="cl-book-hint">📆 尽早预订</span> → Hertz / Avis / Enterprise</span>
       </li>
       <li><input type="checkbox" onchange="handleCheck(this)">
-        <span>🍽️ <strong>Roy's Waikiki 晚餐</strong>：建议提前预约 → <a href="https://www.opentable.com" target="_blank">OpenTable</a> 或直接打电话订位</span>
+        <span class="cl-date">8/10 5:00 PM</span>
+        <span>🌺 <strong>Chief's Luau 晚宴</strong>：建议提前 1–2 周网上订座 <span class="cl-book-hint">📆 提前 1–2 周</span> → <a href="https://fareharbor.com/embeds/book/chiefsluau/?full-items=yes" target="_blank">FareHarbor 订票</a></span>
       </li>
       <li><input type="checkbox" onchange="handleCheck(this)">
-        <span>🚗 <strong>租车（Day 4 北岸）</strong>：建议提前几天在网上预订，旺季车辆不够用，约 $60–$80/天</span>
+        <span class="cl-date">8/11 1:45 PM</span>
+        <span>⚓ <strong>珍珠港 USS Arizona Memorial</strong>：已约 1:45 PM 场次，建议提前 30 分钟到达游客中心 <span class="cl-book-hint">✅ 已预约</span> → <a href="https://www.recreation.gov" target="_blank">recreation.gov</a></span>
       </li>
     </ul>
   </div>
@@ -510,7 +504,7 @@
         <div class="day-num">D1</div>
         <div>
           <div class="day-title">抵达夏威夷 · 初见威基基</div>
-          <div class="day-theme">📅 8月7日（周四）</div>
+          <div class="day-theme">📅 8月7日（周五）</div>
         </div>
       </div>
       <div class="day-body">
@@ -566,8 +560,8 @@
       <div class="day-header">
         <div class="day-num">D2</div>
         <div>
-          <div class="day-title">珍珠港 · 历史与城市</div>
-          <div class="day-theme">📅 8月8日（周五）</div>
+          <div class="day-title">市区漫步 · 皇宫 & 购物</div>
+          <div class="day-theme">📅 8月8日（周六）</div>
         </div>
       </div>
       <div class="day-body">
@@ -580,32 +574,28 @@
             </div>
           </li>
           <li>
-            <span class="time-badge">9:30 AM</span>
-            <div class="event-content">
-              <div class="event-name">⚓ 珍珠港 Pearl Harbor <span class="tag tag-must">必去</span> <span class="tag tag-book">需预约</span></div>
-              <div class="event-desc">
-                <strong>USS Arizona Memorial</strong>（免费）：乘船游览，沉船遗址令人动容<br>
-                <strong>密苏里号战列舰</strong>：$35/人，二战结束签字现场<br>
-                💡 全程约 4–5 小时，建议早到避免人多
-              </div>
-            </div>
-          </li>
-          <li>
-            <span class="time-badge">2:30 PM</span>
-            <div class="event-content">
-              <div class="event-name">🍜 午餐：Plate Lunch</div>
-              <div class="event-desc">L&L Hawaiian BBQ 或 Zippy's，体验本地 Plate Lunch，人均约 $12</div>
-            </div>
-          </li>
-          <li>
-            <span class="time-badge">3:00 PM</span>
+            <span class="time-badge">10:00 AM</span>
             <div class="event-content">
               <div class="event-name">🏛️ 伊奥拉尼宫 Iolani Palace</div>
               <div class="event-desc">美国唯一真正皇家宫殿，末代女王 Liliuokalani 曾被囚于此。门票 $25/人</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">5:00 PM</span>
+            <span class="time-badge">12:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🍜 午餐：Helena's Hawaiian Food</div>
+              <div class="event-desc">James Beard 奖传奇小店，Oxtail Soup + Kalua Pig 必点，人均 $20</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">1:30 PM</span>
+            <div class="event-content">
+              <div class="event-name">🏛️ Chinatown 唐人街</div>
+              <div class="event-desc">华人移民历史 150+ 年，逛鲜花摊、港式茶餐厅、亚洲食品杂货</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">3:30 PM</span>
             <div class="event-content">
               <div class="event-name">🛍️ Ala Moana Center 逛街</div>
               <div class="event-desc">全美最大露天购物中心，LV/Gucci/Coach 俱全，顺便逛 Ala Moana Beach Park</div>
@@ -628,7 +618,7 @@
         <div class="day-num">D3</div>
         <div>
           <div class="day-title">钻石头山 · 东海岸海湾</div>
-          <div class="day-theme">📅 8月9日（周六）</div>
+          <div class="day-theme">📅 8月9日（周日）</div>
         </div>
       </div>
       <div class="day-body">
@@ -684,52 +674,59 @@
       <div class="day-header">
         <div class="day-num">D4</div>
         <div>
-          <div class="day-title">北岸 · 菠萝园 · 大蒜虾</div>
-          <div class="day-theme">📅 8月10日（周日）</div>
+          <div class="day-title">北岸 · 菠萝园 · Chief's Luau</div>
+          <div class="day-theme">📅 8月10日（周一）</div>
         </div>
       </div>
       <div class="day-body">
         <ul class="timeline">
           <li>
-            <span class="time-badge">9:00 AM</span>
+            <span class="time-badge">8:30 AM</span>
             <div class="event-content">
               <div class="event-name">🚗 租车出发（今天必须租车）</div>
               <div class="event-desc">Hertz/Avis/Enterprise 在 Waikiki 附近，$65–$90/天。H1/H2 高速约 50 分钟到北岸</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">10:30 AM</span>
+            <span class="time-badge">10:00 AM</span>
             <div class="event-content">
               <div class="event-name">🍍 Dole Pineapple Plantation <span class="tag tag-must">必体验</span></div>
               <div class="event-desc"><strong>必买 Dole Whip 菠萝冰淇淋</strong>！可参加菠萝 Express 小火车游览 $12/人</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">12:30 PM</span>
+            <span class="time-badge">11:30 AM</span>
             <div class="event-content">
               <div class="event-name">🦐 午餐：Giovanni's Shrimp Truck <span class="tag tag-must">必吃！</span></div>
               <div class="event-desc">北岸传奇虾车，营业 30+ 年。<strong>经典蒜香奶油虾</strong>配白饭，$15/份</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">2:00 PM</span>
+            <span class="time-badge">1:00 PM</span>
             <div class="event-content">
-              <div class="event-name">🌊 Haleiwa 冲浪小镇漫步</div>
-              <div class="event-desc">彩色小屋、冲浪店、艺术画廊。去 <strong>Matsumoto's Shave Ice</strong> 吃经典刨冰！</div>
+              <div class="event-name">🌊 Haleiwa 小镇 + Matsumoto's Shave Ice</div>
+              <div class="event-desc">彩色小屋、冲浪店、艺术画廊。70年老店经典三色刨冰必打卡</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">3:30 PM</span>
+            <span class="time-badge">2:30 PM</span>
             <div class="event-content">
-              <div class="event-name">🏄 Waimea Bay 韦麦阿湾</div>
-              <div class="event-desc">夏季浪小可安全游泳，左边巨石可跳水（胆大者挑战）</div>
+              <div class="event-name">🏄 Sunset Beach 拍照打卡</div>
+              <div class="event-desc">北岸最美海滩，拍照留念后出发前往 Kapolei</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">5:30 PM</span>
+            <span class="time-badge">3:00 PM</span>
             <div class="event-content">
-              <div class="event-name">🌺 Sunset Beach + 返程</div>
-              <div class="event-desc">沿海岸欣赏北岸日落，返回威基基后在 Marukame Udon 吃平价乌冬面（$8）</div>
+              <div class="event-name">🚗 开车前往 Kapolei</div>
+              <div class="event-desc">北岸→Kapolei 约 1 小时车程（H2 高速），提前到达休息</div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">5:00 PM</span>
+            <div class="event-content">
+              <div class="event-name">🌺 Chief's Luau Check-in <span class="tag tag-must">夏威夷文化精华！</span></div>
+              <div class="event-desc">火刀世界冠军 Chief Sielu 主持，Kalua 烤猪 + 火舞 + Hula 表演。Paradise $182/人，约 4.5 小时全程</div>
             </div>
           </li>
         </ul>
@@ -741,8 +738,8 @@
       <div class="day-header">
         <div class="day-num">D5</div>
         <div>
-          <div class="day-title">购物 · 唐人街 · Luau 夜宴</div>
-          <div class="day-theme">📅 8月11日（周一）</div>
+          <div class="day-title">珍珠港 · 唐人街 · 购物</div>
+          <div class="day-theme">📅 8月11日（周二）</div>
         </div>
       </div>
       <div class="day-body">
@@ -757,36 +754,39 @@
           <li>
             <span class="time-badge">10:30 AM</span>
             <div class="event-content">
-              <div class="event-name">🐬 可选：Sea Life Park 海洋公园</div>
-              <div class="event-desc">海豚、海狮表演，可体验 Swim with Dolphins（$225/人）。门票 $40/人</div>
+              <div class="event-name">🍜 午餐：L&amp;L Hawaiian BBQ 或附近小店</div>
+              <div class="event-desc">体验本地 Plate Lunch，吃饱再出发去珍珠港，人均约 $12</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">12:00 PM</span>
+            <span class="time-badge">12:45 PM</span>
             <div class="event-content">
-              <div class="event-name">🍱 午餐：Helena's Hawaiian Food</div>
-              <div class="event-desc">James Beard 奖传奇小店，Oxtail Soup + Kalua Pig 必点，人均 $20</div>
+              <div class="event-name">🚕 前往珍珠港</div>
+              <div class="event-desc">Uber/Lyft 约 30 分钟，提前到达游客中心办理登记</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">2:00 PM</span>
+            <span class="time-badge">1:45 PM</span>
+            <div class="event-content">
+              <div class="event-name">⚓ 珍珠港 Pearl Harbor <span class="tag tag-must">必去</span> <span class="tag tag-book">已预约</span></div>
+              <div class="event-desc">
+                <strong>USS Arizona Memorial</strong>（已约 1:45 PM 场次）：乘船游览，沉船遗址令人动容<br>
+                <strong>密苏里号战列舰</strong>（可选）：$35/人，二战结束签字现场，参观约 1 小时
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="time-badge">4:00 PM</span>
             <div class="event-content">
               <div class="event-name">🛍️ Ala Moana Center 大采购 <span class="tag tag-must">购物天堂</span></div>
               <div class="event-desc"><strong>特产必买</strong>：Macadamia Nuts、Kona 咖啡、夏威夷海盐、Aloha 衬衫、Honolulu Cookie</div>
             </div>
           </li>
           <li>
-            <span class="time-badge">4:30 PM</span>
+            <span class="time-badge">7:00 PM</span>
             <div class="event-content">
-              <div class="event-name">🚌 前往 Luau 集合地点</div>
-              <div class="event-desc">酒店大堂通常有巴士接送，提前确认出发时间</div>
-            </div>
-          </li>
-          <li>
-            <span class="time-badge">5:30 PM</span>
-            <div class="event-content">
-              <div class="event-name">🌺 Paradise Cove Luau <span class="tag tag-must">夏威夷文化精华！</span></div>
-              <div class="event-desc">Ko Olina 海岸，Kalua 烤猪开坑仪式 + 火舞 + Hula 表演。票价 $135–$175/人，建议提前订购</div>
+              <div class="event-name">🍽️ 晚餐：Duke's Waikiki</div>
+              <div class="event-desc">威基基海滩边经典餐厅，Seafood Nachos + Hula Pie，人均 $35–$50</div>
             </div>
           </li>
         </ul>
@@ -799,7 +799,7 @@
         <div class="day-num">D6</div>
         <div>
           <div class="day-title">最后早晨 · 返程启程</div>
-          <div class="day-theme">📅 8月12日（周二）· 然后 8/13 9AM 到达 Albany</div>
+          <div class="day-theme">📅 8月12日（周三）· 然后 8/13 9AM 到达 Albany</div>
         </div>
       </div>
       <div class="day-body">
@@ -895,7 +895,7 @@
         <ul>
           <li>餐饮：$150–$250/天</li>
           <li>景点门票：$50–$100/人/天</li>
-          <li>Luau：$135–$175/人（一次性）</li>
+          <li>Luau：$144–$231/人（一次性）</li>
           <li>租车：$65–$90/天（北岸那天）</li>
           <li>总估算：$3000–$4500（不含机票酒店）</li>
         </ul>
@@ -925,7 +925,7 @@
     {name:"Roy's Waikiki",           cat:"fusion",   catLabel:"🍴 夏威夷融合料理",  stars:5, reserve:true,  featured:true,  price:"$60–$80",    dish:"黑糖酥皮蝴蝶鱼、熔岩巧克力蛋糕",       note:"名厨 Roy Yamaguchi 创办，夏威夷融合料理殿堂级"},
     {name:"Helena's Hawaiian Food",   cat:"hawaiian", catLabel:"🏝️ 夏威夷本地特色",  stars:5,               featured:true,  price:"$20",        dish:"Oxtail Soup、Kalua Pig、Poi",          note:"James Beard 奖得主，70年传奇平民小店"},
     {name:"Giovanni's Shrimp Truck",  cat:"hawaiian", catLabel:"🏝️ 夏威夷本地特色",  stars:5,               featured:true,  price:"$15",        dish:"蒜香奶油虾饭（Scampi Style）",           note:"北岸传奇路边虾车，营业 30+ 年必打卡"},
-    {name:"Paradise Cove Luau",       cat:"hawaiian", catLabel:"🏝️ 夏威夷传统宴会",  stars:5, reserve:true,                  price:"$135–$175",  dish:"Kalua 烤猪、传统 Poi、夏威夷沙拉",      note:"欧胡岛最大 Luau，含火舞 & Hula 全套表演"},
+    {name:"Chief's Luau",             cat:"hawaiian", catLabel:"🏝️ 夏威夷传统宴会",  stars:5, reserve:true,                  price:"$144–$231",  dish:"Kalua 烤猪、传统 Poi、夏威夷沙拉",      note:"火刀冠军 Chief Sielu 主持，Hawaii 最高评分 Luau"},
     {name:"Matsumoto's Shave Ice",    cat:"dessert",  catLabel:"🍦 甜品/小吃",       stars:5,                               price:"$5–$8",      dish:"经典三色刨冰、加冰淇淋底",              note:"北岸 Haleiwa 70年老店，全球必打卡圣地"},
     {name:"Duke's Waikiki",           cat:"hawaiian", catLabel:"🏝️ 夏威夷本地特色",  stars:4, reserve:true,                  price:"$35–$50",    dish:"Seafood Nachos、Hula Pie",              note:"冲浪传奇 Duke Kahanamoku 命名，威基基海滩绝佳位置"},
     {name:"Marukame Udon",            cat:"japanese", catLabel:"🍜 日式料理",         stars:4,                               price:"$8–$12",     dish:"Nabeyaki Udon、Teriyaki Chicken Udon",  note:"威基基平价现做乌冬面，性价比超高"},
@@ -1017,7 +1017,7 @@
     {match:"Waiola Shave Ice",       cuisine:"🍦 甜品/小吃"},
     {match:"Giovanni's Shrimp Truck",cuisine:"🏝️ 夏威夷本地特色"},
     {match:"Helena's Hawaiian Food", cuisine:"🏝️ 传统夏威夷料理"},
-    {match:"Paradise Cove Luau",     cuisine:"🏝️ 夏威夷传统宴会"},
+    {match:"Chief's Luau",           cuisine:"🏝️ 夏威夷传统宴会"},
     {match:"Marukame Udon",          cuisine:"🍜 日式料理"},
   ];
 
